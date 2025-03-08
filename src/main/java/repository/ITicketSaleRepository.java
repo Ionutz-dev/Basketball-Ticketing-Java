@@ -2,6 +2,6 @@ package repository;
 
 import model.TicketSale;
 
-public interface TicketSaleRepository {
+public interface ITicketSaleRepository {
     void addTicketSale(TicketSale sale);
 }
