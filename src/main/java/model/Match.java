@@ -1,67 +1,62 @@
 package model;
 
 public class Match {
-    private int matchID;
-    private String title;
-    private String stage;
+    private int id;
+    private String teamA;
+    private String teamB;
+    private double ticketPrice;
     private int availableSeats;
-    private double price;
 
-    public Match(int matchID, String title, String stage, int availableSeats, double price) {
-        this.matchID = matchID;
-        this.title = title;
-        this.stage = stage;
+    public Match(int id, String teamA, String teamB, double ticketPrice, int availableSeats) {
+        this.id = id;
+        this.teamA = teamA;
+        this.teamB = teamB;
+        this.ticketPrice = ticketPrice;
         this.availableSeats = availableSeats;
-        this.price = price;
     }
 
-    public int getMatchID() {
-        return matchID;
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setMatchID(int matchID) {
-        this.matchID = matchID;
+    public String getTeamA() {
+        return teamA;
+    }
+    public void setTeamA(String teamA) {
+        this.teamA = teamA;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTeamB() {
+        return teamB;
+    }
+    public void setTeamB(String teamB) {
+        this.teamB = teamB;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public double getTicketPrice() {
+        return ticketPrice;
     }
-
-    public String getStage() {
-        return stage;
-    }
-
-    public void setStage(String stage) {
-        this.stage = stage;
+    public void setTicketPrice(double ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 
     public int getAvailableSeats() {
         return availableSeats;
     }
-
     public void setAvailableSeats(int availableSeats) {
         this.availableSeats = availableSeats;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     @Override
     public String toString() {
         return "Match{" +
-                "matchID=" + matchID +
-                ", title='" + title + '\'' +
-                ", stage='" + stage + '\'' +
-                ", price=" + price +
+                "id=" + id +
+                ", teamA='" + teamA + '\'' +
+                ", teamB='" + teamB + '\'' +
+                ", ticketPrice=" + ticketPrice +
                 ", availableSeats=" + availableSeats +
                 '}';
     }
