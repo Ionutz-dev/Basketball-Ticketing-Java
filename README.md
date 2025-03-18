@@ -30,11 +30,11 @@ JavaApp/
 │   │       ├── db.properties
 │   │       └── log4j2.xml
 │   └── test/
-│       ├── java/                        # Test classes (if any)
-│       └── resources/                   # Test resources (if any)
+│       ├── java/                        
+│       └── resources/                  
 │
-└── target/                              # Build output
-    └── app.log                          # Log file (generated)
+└── target/                              
+    └── app.log                         
 ```
 
 ## Features
