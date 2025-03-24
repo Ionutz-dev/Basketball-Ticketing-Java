@@ -1,16 +1,18 @@
-package model;
+package tickets.model;
 
 import java.time.LocalDateTime;
 
 public class Ticket {
     private int id;
     private int matchId;
+    private int userId;
     private String customerName;
     private int seatsSold;
 
-    public Ticket(int id, int matchId, String customerName, int seatsSold) {
+    public Ticket(int id, int matchId, int userId, String customerName, int seatsSold) {
         this.id = id;
         this.matchId = matchId;
+        this.userId = userId;
         this.customerName = customerName;
         this.seatsSold = seatsSold;
     }
@@ -27,6 +29,13 @@ public class Ticket {
     }
     public void setMatchId(int matchId) {
         this.matchId = matchId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getCustomerName() {
@@ -48,6 +57,7 @@ public class Ticket {
         return "Ticket{" +
                 "id=" + id +
                 ", matchId=" + matchId +
+                ", userId=" + userId +
                 ", customerName='" + customerName + '\'' +
                 ", seatsSold=" + seatsSold +
                 '}';

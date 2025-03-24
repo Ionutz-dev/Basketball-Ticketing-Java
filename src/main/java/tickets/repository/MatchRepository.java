@@ -1,7 +1,7 @@
-package repository;
+package tickets.repository;
 
-import model.Match;
-import utils.DBUtils;
+import tickets.model.Match;
+import tickets.utils.DBUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.sql.*;
@@ -63,5 +63,24 @@ public class MatchRepository implements IMatchRepository {
         } catch (Exception e) {
             logger.error("Error updating seats", e);
         }
+    }
+
+    @Override
+    public Match findMatchById(int matchId) {
+        String sql = "SELECT * FROM Matches WHERE id = ?";
+        Match match = null;
+
+        try (Connection conn = DBUtils.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, matchId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                match = new Match(rs.getInt("id"), rs.getString("teamA"),
+                        rs.getString("teamB"), rs.getDouble("ticketPrice"), rs.getInt("availableSeats"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return match;
     }
 }

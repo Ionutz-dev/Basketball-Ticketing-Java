@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="tickets.controller.MainWindowController"
+      spacing="10" alignment="CENTER" style="-fx-padding: 20;">
+
+    <Label text="Basketball Ticket Sales" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <TableView fx:id="matchTable" prefHeight="200" prefWidth="500">
+        <columns>
+            <TableColumn fx:id="teamColumn" text="Teams" prefWidth="200"/>
+            <TableColumn fx:id="priceColumn" text="Price" prefWidth="100"/>
+            <TableColumn fx:id="seatsColumn" text="Available Seats" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10">
+        <TextField fx:id="customerField" promptText="Customer Name"/>
+        <TextField fx:id="seatsField" promptText="Seats to Buy"/>
+        <Button text="Buy Ticket" onAction="#handleBuyTicket"/>
+    </HBox>
+
+    <Label fx:id="statusLabel" textFill="green"/>
+</VBox>

@@ -1,13 +1,29 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.javamodularity.moduleplugin' version '1.8.12'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.jlink' version '2.25.0'
 }
 
-group = 'org.example'
+group = 'tickets'
 version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+sourceCompatibility = '21'
+targetCompatibility = '21'
+
+javafx {
+    version = '21'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.web', 'javafx.swing', 'javafx.media']
+}
+
+application {
+    mainModule = 'tickets'
+    mainClass = 'tickets.MainApp'
 }
 
 dependencies {
@@ -18,22 +34,22 @@ dependencies {
 
     implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
     implementation 'org.apache.logging.log4j:log4j-api:2.23.1'
-}
 
-application {
-    mainClass = 'Main'
+    implementation 'org.controlsfx:controlsfx:11.1.2'
 }
 
 test {
     useJUnitPlatform()
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'Main'
+jlink {
+    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'ticket-sales-app'
     }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+jlinkZip {
+    group = 'distribution'
 }

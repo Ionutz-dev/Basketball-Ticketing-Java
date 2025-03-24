@@ -1,3 +1,12 @@
 17 Mar 2025 22:06:50,595 INFO  repository.MatchRepository 26 findAll - Fetched all matches
 18 Mar 2025 08:17:35,661 INFO  repository.MatchRepository 26 findAll - Fetched all matches
 18 Mar 2025 08:38:25,525 INFO  repository.MatchRepository 26 findAll - Fetched all matches
+18 Mar 2025 09:01:01,934 INFO  repository.MatchRepository 26 findAll - Fetched all matches
+18 Mar 2025 09:10:56,477 INFO  repository.MatchRepository 26 findAll - Fetched all matches
+24 Mar 2025 19:41:05,609 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+24 Mar 2025 19:43:42,831 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+24 Mar 2025 19:43:58,900 INFO  tickets.repository.TicketRepository 27 save - Saved ticket - matchId=2, userId=1, customer=Hatz
+24 Mar 2025 19:43:58,910 INFO  tickets.repository.MatchRepository 62 updateSeats - Updated seats for matchId=2
+24 Mar 2025 19:43:58,918 INFO  tickets.service.TicketService 47 sellTicket - Sale completed. Remaining seats for match ID 2: 140
+24 Mar 2025 19:43:58,920 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+24 Mar 2025 19:54:10,945 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches

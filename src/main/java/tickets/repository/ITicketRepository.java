@@ -1,6 +1,6 @@
-package repository;
+package tickets.repository;
 
-import model.Ticket;
+import tickets.model.Ticket;
 
 public interface ITicketRepository {
     void save(Ticket ticket);

@@ -1,6 +1,6 @@
-package repository;
+package tickets.repository;
 
-import model.User;
+import tickets.model.User;
 
 import java.util.Optional;
 

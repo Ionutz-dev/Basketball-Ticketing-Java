@@ -1,4 +1,4 @@
-package model;
+package tickets.model;
 
 public class Match {
     private int id;

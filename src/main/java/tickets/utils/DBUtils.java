@@ -1,4 +1,4 @@
-package utils;
+package tickets.utils;
 
 import java.io.InputStream;
 import java.sql.Connection;

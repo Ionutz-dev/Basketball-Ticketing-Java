@@ -1,4 +1,4 @@
-package model;
+package tickets.model;
 
 public class User {
     private int id;
