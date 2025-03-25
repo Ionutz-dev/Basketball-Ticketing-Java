@@ -10,3 +10,8 @@
 24 Mar 2025 19:43:58,918 INFO  tickets.service.TicketService 47 sellTicket - Sale completed. Remaining seats for match ID 2: 140
 24 Mar 2025 19:43:58,920 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
 24 Mar 2025 19:54:10,945 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+25 Mar 2025 09:06:26,206 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+25 Mar 2025 09:07:08,954 INFO  tickets.repository.TicketRepository 27 save - Saved ticket - matchId=2, userId=1, customer=testuser
+25 Mar 2025 09:07:08,964 INFO  tickets.repository.MatchRepository 62 updateSeats - Updated seats for matchId=2
+25 Mar 2025 09:07:08,969 INFO  tickets.service.TicketService 45 buyTicket - Purchased completed. Remaining seats for match ID 2: 130
+25 Mar 2025 09:07:08,972 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
