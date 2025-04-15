@@ -1,6 +1,6 @@
-package tickets.repository;
+package app.repository;
 
-import tickets.model.User;
+import app.model.User;
 
 public interface IUserRepository {
     User findByUsernameAndPassword(String username, String password);

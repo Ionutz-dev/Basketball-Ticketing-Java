@@ -1,17 +1,24 @@
 package tickets.controller;
 
+import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import tickets.model.Match;
-import tickets.model.User;
 import tickets.repository.MatchRepository;
 import tickets.repository.TicketRepository;
 import tickets.service.TicketService;
+import tickets.model.User;
+import tickets.network.TicketClient;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 public class MainWindowController {
-
     @FXML
     private TableView<Match> matchTable;
     @FXML
@@ -21,15 +28,14 @@ public class MainWindowController {
     @FXML
     private TableColumn<Match, Integer> seatsColumn;
     @FXML
-    private TextField customerField;
-    @FXML
     private TextField seatsField;
     @FXML
     private Label statusLabel;
 
     private User currentUser;
-    private ObservableList<Match> matchModel = FXCollections.observableArrayList();
     private TicketService ticketService;
+    private TicketClient ticketClient;
+    private Socket socket;
 
     // Setter for login controller to call
     public void setCurrentUser(User user) {
@@ -38,38 +44,27 @@ public class MainWindowController {
 
     @FXML
     public void initialize() {
-        // TEMP: Hardcoded test user
-        this.currentUser = new User(1, "testuser", "password");  // Example constructor
+        ticketService = new TicketService(new MatchRepository(), new TicketRepository());
 
-        // Initialize service with repository implementations
-        MatchRepository matchRepo = new MatchRepository();
-        TicketRepository ticketRepo = new TicketRepository();
-        ticketService = new TicketService(matchRepo, ticketRepo);
-
-        // Set up table columns
         teamColumn.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty(data.getValue().getTeamA() + " vs " + data.getValue().getTeamB())
-        );
+                new SimpleStringProperty(data.getValue().getTeamA() + " vs " + data.getValue().getTeamB()));
         priceColumn.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getTicketPrice())
-        );
+                new SimpleObjectProperty<>(data.getValue().getTicketPrice()));
         seatsColumn.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getAvailableSeats())
-        );
+                new SimpleObjectProperty<>(data.getValue().getAvailableSeats()));
 
-        loadMatches();
+        loadMatches(); // only load data
     }
 
-    private void loadMatches() {
-        matchModel.clear();
-        ticketService.getAvailableMatches().forEach(matchModel::add);
-        matchTable.setItems(matchModel);
+    public void loadMatches() {
+        ObservableList<Match> matchList = FXCollections.observableArrayList();
+        ticketService.getAvailableMatches().forEach(matchList::add);
+        matchTable.setItems(matchList);
     }
 
     @FXML
     private void handleBuyTicket() {
         Match selectedMatch = matchTable.getSelectionModel().getSelectedItem();
-        String customer = customerField.getText().trim();
         String seatsText = seatsField.getText().trim();
 
         if (selectedMatch == null) {
@@ -77,13 +72,8 @@ public class MainWindowController {
             return;
         }
 
-        if (currentUser == null) {
-            statusLabel.setText("No logged-in user.");
-            return;
-        }
-
-        if (customer.isEmpty() || seatsText.isEmpty()) {
-            statusLabel.setText("Enter customer name and number of seats.");
+        if (seatsText.isEmpty()) {
+            statusLabel.setText("Enter number of seats.");
             return;
         }
 
@@ -92,24 +82,51 @@ public class MainWindowController {
             seats = Integer.parseInt(seatsText);
             if (seats <= 0) throw new NumberFormatException();
         } catch (NumberFormatException e) {
-            statusLabel.setText("Enter a valid number of seats.");
+            statusLabel.setText("Invalid number of seats.");
             return;
         }
 
         if (selectedMatch.getAvailableSeats() < seats) {
-            statusLabel.setText("Not enough seats available.");
+            statusLabel.setText("Not enough available seats.");
             return;
         }
 
-        // Process ticket sale
+        // Use username from the logged-in user
+        String customer = currentUser.getUsername();
+
         ticketService.buyTicket(selectedMatch.getId(), currentUser.getId(), customer, seats);
         statusLabel.setText("Ticket sold successfully");
 
-        // Refresh matches in table
-        loadMatches();
+        // Notify others
+        try {
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println("UPDATE");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        // Clear input fields
-        customerField.clear();
+        loadMatches();
         seatsField.clear();
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+        try {
+            ticketClient = new TicketClient(this, socket);
+            ticketClient.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+            statusLabel.setText("Connection to server failed.");
+        }
+    }
+
+    public void cleanup() {
+        try {
+            if (socket != null && !socket.isClosed()) {
+                socket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

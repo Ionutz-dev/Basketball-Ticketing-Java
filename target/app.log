@@ -15,3 +15,66 @@
 25 Mar 2025 09:07:08,964 INFO  tickets.repository.MatchRepository 62 updateSeats - Updated seats for matchId=2
 25 Mar 2025 09:07:08,969 INFO  tickets.service.TicketService 45 buyTicket - Purchased completed. Remaining seats for match ID 2: 130
 25 Mar 2025 09:07:08,972 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+01 Apr 2025 08:29:18,658 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+01 Apr 2025 08:29:33,807 INFO  tickets.repository.TicketRepository 27 save - Saved ticket - matchId=3, userId=1, customer=user
+01 Apr 2025 08:29:33,813 INFO  tickets.repository.MatchRepository 62 updateSeats - Updated seats for matchId=3
+01 Apr 2025 08:29:33,816 INFO  tickets.service.TicketService 45 buyTicket - Purchased completed. Remaining seats for match ID 3: 190
+01 Apr 2025 08:29:33,819 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+01 Apr 2025 08:29:45,405 INFO  tickets.repository.TicketRepository 27 save - Saved ticket - matchId=2, userId=1, customer=user
+01 Apr 2025 08:29:45,410 INFO  tickets.repository.MatchRepository 62 updateSeats - Updated seats for matchId=2
+01 Apr 2025 08:29:45,413 INFO  tickets.service.TicketService 45 buyTicket - Purchased completed. Remaining seats for match ID 2: 60
+01 Apr 2025 08:29:45,414 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+01 Apr 2025 08:35:32,536 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+01 Apr 2025 08:48:33,340 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+01 Apr 2025 08:48:42,105 INFO  tickets.repository.TicketRepository 27 save - Saved ticket - matchId=3, userId=1, customer=user
+01 Apr 2025 08:48:42,111 INFO  tickets.repository.MatchRepository 62 updateSeats - Updated seats for matchId=3
+01 Apr 2025 08:48:42,114 INFO  tickets.service.TicketService 45 buyTicket - Purchased completed. Remaining seats for match ID 3: 180
+01 Apr 2025 08:48:42,117 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+07 Apr 2025 22:07:40,030 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+07 Apr 2025 22:13:35,273 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+07 Apr 2025 22:14:49,323 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 00:22:39,453 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 00:33:03,429 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 00:33:41,238 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 00:47:58,373 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 00:50:21,541 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 00:50:32,690 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 00:51:03,753 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 00:56:46,325 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 00:59:40,365 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 00:59:48,992 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 01:01:15,579 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 01:01:28,218 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 01:06:05,751 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 01:08:36,797 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 01:08:52,308 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 01:10:44,191 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 01:14:10,846 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 01:14:17,752 INFO  tickets.repository.TicketRepository 27 save - Saved ticket - matchId=3, userId=1, customer=admin
+08 Apr 2025 01:14:17,760 INFO  tickets.repository.MatchRepository 62 updateSeats - Updated seats for matchId=3
+08 Apr 2025 01:14:17,764 INFO  tickets.service.TicketService 45 buyTicket - Purchased completed. Remaining seats for match ID 3: 160
+08 Apr 2025 01:14:17,768 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:12:15,963 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:12:43,219 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:21:37,216 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:21:54,683 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:22:04,764 INFO  tickets.repository.TicketRepository 27 save - Saved ticket - matchId=1, userId=2, customer=admin1
+08 Apr 2025 08:22:04,775 INFO  tickets.repository.MatchRepository 62 updateSeats - Updated seats for matchId=1
+08 Apr 2025 08:22:04,782 INFO  tickets.service.TicketService 45 buyTicket - Purchased completed. Remaining seats for match ID 1: 80
+08 Apr 2025 08:22:41,261 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:22:46,411 INFO  tickets.repository.TicketRepository 27 save - Saved ticket - matchId=1, userId=1, customer=admin
+08 Apr 2025 08:22:46,433 INFO  tickets.repository.MatchRepository 62 updateSeats - Updated seats for matchId=1
+08 Apr 2025 08:22:46,439 INFO  tickets.service.TicketService 45 buyTicket - Purchased completed. Remaining seats for match ID 1: 60
+08 Apr 2025 08:22:46,445 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:23:32,564 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:26:28,454 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:31:22,455 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:44:02,755 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:49:40,650 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:52:53,786 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:53:32,953 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 08:54:08,228 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 09:02:20,138 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 09:04:21,716 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 09:06:39,368 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches
+08 Apr 2025 09:12:19,442 INFO  tickets.repository.MatchRepository 46 findAvailableMatches - Fetched available matches

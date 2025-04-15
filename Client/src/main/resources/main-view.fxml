@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="tickets.controller.MainWindowController"
+      fx:controller="app.client.gui.MainController"
       spacing="20" alignment="CENTER"
       style="-fx-padding: 30; -fx-background-color: #f9f9f9;">
 
@@ -16,15 +16,10 @@
 
     <TableView fx:id="matchTable" prefHeight="250" prefWidth="550">
         <columns>
-            <TableColumn fx:id="teamColumn" text="Teams" prefWidth="250"/>
-            <TableColumn fx:id="priceColumn" text="Price" prefWidth="100"/>
-            <TableColumn fx:id="seatsColumn" text="Available Seats" prefWidth="150"/>
+            <TableColumn fx:id="team1Column" text="Team 1" prefWidth="180"/>
+            <TableColumn fx:id="team2Column" text="Team 2" prefWidth="180"/>
+            <TableColumn fx:id="availableSeatsColumn" text="Available Seats" prefWidth="180"/>
         </columns>
-        <style>
-            -fx-border-color: #ccc;
-            -fx-border-radius: 4;
-            -fx-background-radius: 4;
-        </style>
     </TableView>
 
     <HBox spacing="15" alignment="CENTER">
@@ -32,12 +27,12 @@
                    promptText="Seats to Buy"
                    style="-fx-pref-width: 160; -fx-font-size: 13px;"/>
 
-        <Button text="Buy Ticket" onAction="#handleBuyTicket"
+        <Button text="Buy Ticket"
+                onAction="#handleBuyTicket"
                 style="-fx-background-color: #3498db; -fx-text-fill: white;
                        -fx-font-weight: bold; -fx-pref-width: 120; -fx-font-size: 13px;"/>
     </HBox>
 
     <Label fx:id="statusLabel"
            style="-fx-font-size: 13px; -fx-text-fill: green;"/>
-
 </VBox>

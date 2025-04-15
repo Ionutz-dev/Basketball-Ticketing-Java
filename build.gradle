@@ -23,7 +23,9 @@ javafx {
 
 application {
     mainModule = 'tickets'
-    mainClass = 'tickets.MainApp'
+    mainClass = project.hasProperty('mainClass') ? project.getProperty('mainClass') : 'tickets.MainApp'
+
+    applicationDefaultJvmArgs = ["--add-exports", "tickets/tickets.network=ALL-UNNAMED"]
 }
 
 dependencies {
@@ -40,6 +42,17 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
 }
 
 jlink {
