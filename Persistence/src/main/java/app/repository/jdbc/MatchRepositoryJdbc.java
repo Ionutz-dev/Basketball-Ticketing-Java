@@ -15,7 +15,7 @@ public class MatchRepositoryJdbc implements IMatchRepository {
     private final JdbcUtils jdbcUtils;
 
     public MatchRepositoryJdbc(Properties props) {
-        this.jdbcUtils = new JdbcUtils(props); // inject config at construction
+        this.jdbcUtils = new JdbcUtils(props);
     }
 
     @Override

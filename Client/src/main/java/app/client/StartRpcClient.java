@@ -1,8 +1,9 @@
 package app.client;
 
 import app.client.gui.LoginController;
+import app.client.gui.SceneManager;
 import app.network.rpcprotocol.BasketballServicesRpcProxy;
-import app.services.IBasketballService;
+import app.services.IBasketballServices;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,14 +16,17 @@ public class StartRpcClient extends Application {
         String host = "localhost";
         int port = 55556;
 
-        IBasketballService service = new BasketballServicesRpcProxy(host, port);
+        IBasketballServices service = new BasketballServicesRpcProxy(host, port);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/login-view.fxml"));
+        // Set primary stage globally
+        SceneManager.setPrimaryStage(primaryStage);
+
+        // Show LoginWindow scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginWindow.fxml"));
         Scene scene = new Scene(loader.load());
 
         LoginController controller = loader.getController();
         controller.setService(service);
-        controller.setPrimaryStage(primaryStage); // 🔑 so it can switch scene later
 
         primaryStage.setTitle("🏀 Basketball Ticket Login");
         primaryStage.setScene(scene);

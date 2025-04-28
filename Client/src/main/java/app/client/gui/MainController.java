@@ -2,19 +2,27 @@ package app.client.gui;
 
 import app.model.Match;
 import app.model.User;
+import app.network.rpcprotocol.BasketballServicesRpcProxy;
+import app.services.BasketballException;
 import app.services.IBasketballObserver;
-import app.services.IBasketballService;
+import app.services.IBasketballServices;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainController implements IBasketballObserver {
 
-    private IBasketballService service;
+    private IBasketballServices service;
     private User loggedUser;
 
     @FXML
@@ -28,6 +36,8 @@ public class MainController implements IBasketballObserver {
     private TableColumn<Match, Integer> availableSeatsColumn;
 
     @FXML
+    private TextField customerNameField;
+    @FXML
     private TextField seatsField;
 
     @FXML
@@ -36,7 +46,7 @@ public class MainController implements IBasketballObserver {
     @FXML
     private Label statusLabel;
 
-    public void setService(IBasketballService service) {
+    public void setService(IBasketballServices service) {
         this.service = service;
         initTable();
         loadMatchData();
@@ -47,58 +57,138 @@ public class MainController implements IBasketballObserver {
         welcomeLabel.setText("Logged in as: " + user.getUsername());
     }
 
+    public void setStageCloseEvent() {
+        Stage stage = SceneManager.getPrimaryStage();
+        stage.setOnCloseRequest(event -> {
+            event.consume();
+
+            handleLogout();
+        });
+    }
+
     private void initTable() {
-        team1Column.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("teamA"));
-        team2Column.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("teamB"));
-        availableSeatsColumn.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("availableSeats"));
+        team1Column.setCellValueFactory(new PropertyValueFactory<>("teamA"));
+        team2Column.setCellValueFactory(new PropertyValueFactory<>("teamB"));
+        availableSeatsColumn.setCellValueFactory(new PropertyValueFactory<>("availableSeats"));
+
+        availableSeatsColumn.setCellFactory(new Callback<>() {
+            @Override
+            public TableCell<Match, Integer> call(TableColumn<Match, Integer> param) {
+                return new TableCell<>() {
+                    @Override
+                    protected void updateItem(Integer seats, boolean empty) {
+                        super.updateItem(seats, empty);
+                        if (empty || seats == null) {
+                            setText(null);
+                            setStyle("");
+                        } else if (seats == 0) {
+                            setText("SOLD OUT");
+                            setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+                        } else {
+                            setText(seats.toString());
+                            setStyle("");
+                        }
+                    }
+                };
+            }
+        });
     }
 
     public void loadMatchData() {
-        try {
-            Iterable<Match> matches = service.getAvailableMatches();
-            List<Match> matchList = new ArrayList<>();
-            matches.forEach(matchList::add);
-            matchTable.setItems(FXCollections.observableArrayList(matchList));
-        } catch (Exception e) {
-            System.err.println("Failed to load matches: " + e.getMessage());
-        }
+        new Thread(() -> {
+            try {
+                Iterable<Match> matches = service.getAvailableMatches();
+                List<Match> matchList = new ArrayList<>();
+                matches.forEach(matchList::add);
+
+                Platform.runLater(() -> {
+                    matchTable.setItems(FXCollections.observableArrayList(matchList));
+                });
+
+            } catch (BasketballException e) {
+                e.printStackTrace();
+                Platform.runLater(() -> showStatus("Failed to load matches: " + e.getMessage(), false));
+            }
+        }).start();
     }
 
     @FXML
-    private void handleBuyTicket() {
-        Match selectedMatch = matchTable.getSelectionModel().getSelectedItem();
-        if (selectedMatch == null) {
-            showStatus("Please select a match.", false);
-            return;
-        }
+    private void handleSellTicket() {
+        new Thread(() -> {
+            Match selectedMatch = matchTable.getSelectionModel().getSelectedItem();
+            if (selectedMatch == null) {
+                Platform.runLater(() -> showStatus("Please select a match.", false));
+                return;
+            }
 
-        String seatsText = seatsField.getText();
-        if (seatsText.isEmpty()) {
-            showStatus("Enter number of seats to buy.", false);
-            return;
+            String customer = customerNameField.getText();
+            String seatsText = seatsField.getText();
+
+            if (customer.isEmpty() || seatsText.isEmpty()) {
+                Platform.runLater(() -> showStatus("Enter customer name and seat count.", false));
+                return;
+            }
+
+            try {
+                int seats = Integer.parseInt(seatsText);
+                if (seats <= 0) {
+                    Platform.runLater(() -> showStatus("Number of seats must be positive.", false));
+                    return;
+                }
+
+                if (seats > selectedMatch.getAvailableSeats()) {
+                    Platform.runLater(() -> showStatus("Not enough seats available.", false));
+                    return;
+                }
+
+                service.sellTicket(selectedMatch.getId(), loggedUser.getId(), customer, seats);
+
+                Platform.runLater(() -> {
+                    loadMatchData();
+                    showStatus("Ticket sold to " + customer + "!", true);
+                    customerNameField.clear();
+                    seatsField.clear();
+                });
+
+            } catch (NumberFormatException e) {
+                Platform.runLater(() -> showStatus("Invalid number format.", false));
+            } catch (BasketballException e) {
+                Platform.runLater(() -> showStatus("Sale failed: " + e.getMessage(), false));
+            }
+        }).start();
+    }
+
+    @FXML
+    private void handleLogout() {
+        try {
+            if (loggedUser != null) {
+                service.logout(loggedUser);
+            }
+        } catch (BasketballException e) {
+            e.printStackTrace();
+            showStatus("Logout error: " + e.getMessage(), false);
         }
 
         try {
-            int seats = Integer.parseInt(seatsText);
-            if (seats <= 0) {
-                showStatus("Number of seats must be positive.", false);
-                return;
-            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginWindow.fxml"));
+            Parent root = loader.load();
 
-            if (seats > selectedMatch.getAvailableSeats()) {
-                showStatus("Not enough seats available.", false);
-                return;
-            }
+            LoginController loginController = loader.getController();
 
-            service.buyTicket(selectedMatch.getId(), loggedUser.getId(), loggedUser.getUsername(), seats);
-            showStatus("Ticket bought successfully!", true);
-            seatsField.clear();
-            loadMatchData();
+            IBasketballServices newService = new BasketballServicesRpcProxy("localhost", 55556);
+            loginController.setService(newService);
 
-        } catch (NumberFormatException e) {
-            showStatus("Please enter a valid number.", false);
+            Scene scene = new Scene(root);
+            Stage stage = SceneManager.getPrimaryStage();
+            stage.setTitle("🏀 Basketball Ticket Login");
+            stage.setScene(scene);
+            stage.show();
+
+            // Remove the close event so that LoginWindow closes normally
+            stage.setOnCloseRequest(null);
+
         } catch (Exception e) {
-            showStatus("Purchase failed: " + e.getMessage(), false);
+            e.printStackTrace();
         }
     }
 
@@ -108,10 +198,11 @@ public class MainController implements IBasketballObserver {
     }
 
     @Override
-    public void ticketBoughtUpdate() {
+    public void ticketSoldUpdate() {
+        System.out.println("[Controller] ticketSoldUpdate() called on thread: " + Thread.currentThread().getName());
         Platform.runLater(() -> {
+            System.out.println("[Controller] Updating matches on thread: " + Thread.currentThread().getName());
             loadMatchData();
-            statusLabel.setText("Ticket bought successfully!");
         });
     }
 }

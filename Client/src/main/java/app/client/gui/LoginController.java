@@ -2,15 +2,17 @@ package app.client.gui;
 
 import app.model.User;
 import app.network.rpcprotocol.BasketballServicesRpcProxy;
-import app.services.IBasketballObserver;
-import app.services.IBasketballService;
+import app.services.BasketballException;
+import app.services.IBasketballServices;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+
+import static app.client.gui.Util.showError;
 
 public class LoginController {
 
@@ -19,15 +21,10 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
-    private IBasketballService service;
-    private Stage primaryStage;
+    private IBasketballServices service;
 
-    public void setService(IBasketballService service) {
+    public void setService(IBasketballServices service) {
         this.service = service;
-    }
-
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
     }
 
     @FXML
@@ -36,40 +33,34 @@ public class LoginController {
         String password = passwordField.getText();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main-view.fxml"));
-            Scene scene = new Scene(loader.load());
-            MainController controller = loader.getController();
+            IBasketballServices newService = new BasketballServicesRpcProxy("localhost", 55556);
 
-            User user = null;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainWindow.fxml"));
+            Parent root = loader.load();
+            MainController mainController = loader.getController();
 
-            if (service instanceof BasketballServicesRpcProxy proxy) {
-                proxy.connect(controller); // ✅ Establish connection first
-                user = service.login(username, password, controller); // ✅ Login after connection
-            }
+            User user = newService.login(username, password, mainController);
 
             if (user == null) {
-                showError("Login failed", "Invalid credentials.");
+                showError(SceneManager.getPrimaryStage(), "Login failed", "Invalid username or password.");
                 return;
             }
 
-            controller.setLoggedUser(user);
-            controller.setService(service); // ✅ Set service after connection is ready
+            mainController.setService(newService);
+            mainController.setLoggedUser(user);
+            mainController.setStageCloseEvent();
 
-            primaryStage.setTitle("Welcome, " + user.getUsername());
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            Scene scene = new Scene(root);
+            Stage stage = SceneManager.getPrimaryStage();
+            stage.setTitle("🏀 Welcome " + user.getUsername());
+            stage.setScene(scene);
+            stage.show();
 
+        } catch (BasketballException e) {
+            showError(SceneManager.getPrimaryStage(), "Login Error", e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            showError("Error", e.getMessage());
+            showError(SceneManager.getPrimaryStage(), "Unexpected Error", e.getMessage());
         }
-    }
-
-    private void showError(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(primaryStage);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

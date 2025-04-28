@@ -34,7 +34,7 @@ public class UserRepositoryJdbc implements IUserRepository {
                 );
             }
         } catch (Exception e) {
-            e.printStackTrace(); // Optional: swap with logger
+            e.printStackTrace();
         }
         return null;
     }

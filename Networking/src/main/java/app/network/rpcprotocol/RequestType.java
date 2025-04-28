@@ -4,5 +4,5 @@ public enum RequestType {
     LOGIN,
     LOGOUT,
     GET_AVAILABLE_MATCHES,
-    BUY_TICKET
+    SELL_TICKET
 }

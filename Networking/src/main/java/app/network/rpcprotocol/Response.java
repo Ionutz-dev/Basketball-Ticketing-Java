@@ -19,6 +19,25 @@ public class Response implements Serializable {
         return data;
     }
 
+    public static class Builder {
+        private ResponseType type;
+        private Object data;
+
+        public Builder type(ResponseType type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder data(Object data) {
+            this.data = data;
+            return this;
+        }
+
+        public Response build() {
+            return new Response(type, data);
+        }
+    }
+
     @Override
     public String toString() {
         return "Response{" +

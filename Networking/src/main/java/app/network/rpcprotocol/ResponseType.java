@@ -5,7 +5,7 @@ public enum ResponseType {
     LOGIN_FAILURE,
     MATCHES,
     TICKET_CONFIRMED,
-    TICKET_BOUGHT,
+    TICKET_SOLD,
     OK,
     ERROR
 }

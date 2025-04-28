@@ -17,12 +17,12 @@ public abstract class AbstractServer {
         try {
             server = new ServerSocket(port);
             running = true;
-            System.out.println("🚀 Server started on port " + port);
+            System.out.println("Server started on port " + port);
 
             while (running) {
                 try {
                     Socket client = server.accept();
-                    System.out.println("📥 Client connected from " + client.getInetAddress());
+                    System.out.println("Client connected from " + client.getInetAddress());
                     processRequest(client);
                 } catch (IOException e) {
                     throw new ServerException("Error accepting client connection", e);

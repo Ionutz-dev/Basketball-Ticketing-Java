@@ -23,13 +23,21 @@
     </TableView>
 
     <HBox spacing="15" alignment="CENTER">
-        <TextField fx:id="seatsField"
-                   promptText="Seats to Buy"
+        <TextField fx:id="customerNameField"
+                   promptText="Customer Name"
                    style="-fx-pref-width: 160; -fx-font-size: 13px;"/>
 
-        <Button text="Buy Ticket"
-                onAction="#handleBuyTicket"
+        <TextField fx:id="seatsField"
+                   promptText="Seats to Sell"
+                   style="-fx-pref-width: 160; -fx-font-size: 13px;"/>
+
+        <Button text="Sell Ticket"
+                onAction="#handleSellTicket"
                 style="-fx-background-color: #3498db; -fx-text-fill: white;
+                       -fx-font-weight: bold; -fx-pref-width: 120; -fx-font-size: 13px;"/>
+
+        <Button text="Logout" onAction="#handleLogout"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white;
                        -fx-font-weight: bold; -fx-pref-width: 120; -fx-font-size: 13px;"/>
     </HBox>
 

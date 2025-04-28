@@ -1,0 +1,98 @@
+26 Apr 2025 01:36:06,889 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 01:36:19,637 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 01:47:44,694 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 01:47:51,198 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 01:50:37,140 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 01:50:46,329 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 01:55:37,680 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 01:55:48,739 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 02:08:51,742 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 02:08:58,109 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 02:15:07,479 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 02:15:20,828 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 02:18:59,106 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 02:19:11,521 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 02:22:45,399 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 02:22:55,289 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 02:23:07,547 INFO  app.repository.jdbc.TicketRepositoryJdbc 33 save - Saved ticket - matchId=3, userId=1, customer=hatz
+26 Apr 2025 02:23:07,553 INFO  app.repository.jdbc.MatchRepositoryJdbc 69 updateSeats - Updated seats for matchId=3
+26 Apr 2025 02:23:07,558 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 02:23:07,657 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 02:23:07,762 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 11:37:05,259 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 11:37:18,130 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 11:37:23,766 INFO  app.repository.jdbc.TicketRepositoryJdbc 33 save - Saved ticket - matchId=1, userId=1, customer=hatz
+26 Apr 2025 11:37:23,772 INFO  app.repository.jdbc.MatchRepositoryJdbc 69 updateSeats - Updated seats for matchId=1
+26 Apr 2025 11:37:23,778 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 11:37:23,876 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 11:37:23,983 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 11:37:43,764 INFO  app.repository.jdbc.TicketRepositoryJdbc 33 save - Saved ticket - matchId=1, userId=2, customer=bau
+26 Apr 2025 11:37:43,771 INFO  app.repository.jdbc.MatchRepositoryJdbc 69 updateSeats - Updated seats for matchId=1
+26 Apr 2025 11:37:43,776 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 11:37:43,874 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 11:37:43,984 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 12:21:19,162 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 12:21:25,268 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 12:21:32,875 INFO  app.repository.jdbc.TicketRepositoryJdbc 33 save - Saved ticket - matchId=1, userId=2, customer=hatz
+26 Apr 2025 12:21:32,880 INFO  app.repository.jdbc.MatchRepositoryJdbc 69 updateSeats - Updated seats for matchId=1
+26 Apr 2025 12:21:32,887 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 12:21:32,993 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 12:21:33,102 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 12:21:46,561 INFO  app.repository.jdbc.TicketRepositoryJdbc 33 save - Saved ticket - matchId=1, userId=1, customer=baubau
+26 Apr 2025 12:21:46,570 INFO  app.repository.jdbc.MatchRepositoryJdbc 69 updateSeats - Updated seats for matchId=1
+26 Apr 2025 12:21:46,576 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+26 Apr 2025 12:21:46,686 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+28 Apr 2025 22:57:39,767 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+28 Apr 2025 23:29:11,692 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+28 Apr 2025 23:44:04,564 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+28 Apr 2025 23:49:48,126 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+28 Apr 2025 23:59:30,254 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:00:08,018 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:00:28,045 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:08:28,552 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:13:12,382 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:15:44,037 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:15:51,213 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:16:04,723 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:16:11,927 INFO  app.repository.jdbc.TicketRepositoryJdbc 33 save - Saved ticket - matchId=3, userId=1, customer=hatz
+29 Apr 2025 00:16:11,933 INFO  app.repository.jdbc.MatchRepositoryJdbc 69 updateSeats - Updated seats for matchId=3
+29 Apr 2025 00:16:11,939 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:22:39,481 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:22:46,343 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:23:00,321 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:23:06,934 INFO  app.repository.jdbc.TicketRepositoryJdbc 33 save - Saved ticket - matchId=3, userId=1, customer=hatz
+29 Apr 2025 00:23:06,942 INFO  app.repository.jdbc.MatchRepositoryJdbc 69 updateSeats - Updated seats for matchId=3
+29 Apr 2025 00:23:06,950 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:36:05,277 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:36:14,082 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:36:24,204 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:36:30,578 INFO  app.repository.jdbc.TicketRepositoryJdbc 33 save - Saved ticket - matchId=3, userId=1, customer=hatz
+29 Apr 2025 00:36:30,585 INFO  app.repository.jdbc.MatchRepositoryJdbc 69 updateSeats - Updated seats for matchId=3
+29 Apr 2025 00:36:30,591 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:36:30,592 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:36:30,594 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:37:24,855 INFO  app.repository.jdbc.TicketRepositoryJdbc 33 save - Saved ticket - matchId=1, userId=2, customer=bau
+29 Apr 2025 00:37:24,861 INFO  app.repository.jdbc.MatchRepositoryJdbc 69 updateSeats - Updated seats for matchId=1
+29 Apr 2025 00:37:24,866 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:37:24,869 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:37:24,871 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:42:29,157 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:42:37,298 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:42:45,689 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:42:58,342 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:43:04,624 INFO  app.repository.jdbc.TicketRepositoryJdbc 33 save - Saved ticket - matchId=2, userId=1, customer=hatz
+29 Apr 2025 00:43:04,630 INFO  app.repository.jdbc.MatchRepositoryJdbc 69 updateSeats - Updated seats for matchId=2
+29 Apr 2025 00:43:04,636 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:43:04,637 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:43:04,639 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:45:51,198 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:46:04,889 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:46:13,844 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:46:19,909 INFO  app.repository.jdbc.TicketRepositoryJdbc 33 save - Saved ticket - matchId=3, userId=1, customer=hatz
+29 Apr 2025 00:46:19,915 INFO  app.repository.jdbc.MatchRepositoryJdbc 69 updateSeats - Updated seats for matchId=3
+29 Apr 2025 00:46:19,921 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:46:19,923 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:46:19,925 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:46:26,468 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:50:28,673 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+29 Apr 2025 00:50:35,087 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches

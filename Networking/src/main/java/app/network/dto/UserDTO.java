@@ -1,11 +1,13 @@
-package app.model;
+package app.network.dto;
 
-public class User {
+import java.io.Serializable;
+
+public class UserDTO implements Serializable {
     private int id;
     private String username;
     private String password;
 
-    public User(int id, String username, String password) {
+    public UserDTO(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -14,27 +16,30 @@ public class User {
     public int getId() {
         return id;
     }
-    void setId(int id) {
+
+    public void setId(int id) {
         this.id = id;
     }
 
     public String getUsername() {
         return username;
     }
-    void setUsername(String username) {
+
+    public void setUsername(String username) {
         this.username = username;
     }
 
     public String getPassword() {
         return password;
     }
-    void setPassword(String password) {
+
+    public void setPassword(String password) {
         this.password = password;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserDTO{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

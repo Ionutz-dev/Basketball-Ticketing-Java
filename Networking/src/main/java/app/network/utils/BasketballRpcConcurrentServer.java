@@ -1,22 +1,21 @@
 package app.network.utils;
 
-import app.network.rpcprotocol.BasketballClientRpcWorker;
-import app.services.IBasketballService;
+import app.network.rpcprotocol.BasketballClientRpcReflectionWorker;
+import app.services.IBasketballServices;
 
 import java.net.Socket;
 
 public class BasketballRpcConcurrentServer extends AbsConcurrentServer {
-    private final IBasketballService service;
+    private final IBasketballServices service;
 
-    public BasketballRpcConcurrentServer(int port, IBasketballService service) {
+    public BasketballRpcConcurrentServer(int port, IBasketballServices service) {
         super(port);
         this.service = service;
-        System.out.println("✅ BasketballRpcConcurrentServer initialized on port " + port);
+        System.out.println("BasketballRpcConcurrentServer initialized on port " + port);
     }
 
     @Override
     protected Thread createWorker(Socket client) {
-        BasketballClientRpcWorker worker = new BasketballClientRpcWorker(service, client);
-        return new Thread(worker);
+        return new Thread(new BasketballClientRpcReflectionWorker(service, client));
     }
 }
