@@ -120,6 +120,3 @@ You can open multiple clients by launching the client multiple times!
 - Log4j2 (logging)
 - Observer design pattern
 - Modular Java (`module-info.java`)
-
-Would you also like me to quickly generate a **graphical diagram** for your architecture (client-server flow)? 📈
-It would make your README even cooler if you present this to someone! 🚀
