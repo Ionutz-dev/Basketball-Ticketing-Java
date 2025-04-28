@@ -1,92 +1,125 @@
-# 🏀 Basketball Ticket Sales System (Java + JavaFX)
+# 🏀 Basketball Ticket Sales System (Java + JavaFX + Networking)
 
-This project is a **JavaFX-based desktop application** for managing basketball ticket sales. It includes GUI interaction, ticket purchase logic, seat management, and persistent storage using SQLite.
+This project is a **JavaFX-based multi-client application** for managing basketball ticket sales with **real-time updates**, **server-client communication** over a **custom RPC protocol**, and **concurrent user support**.
 
 ## 📁 Project Structure
 ```
 JavaApp/
 │
-├── build.gradle                     # Project build configuration
-├── gradlew / gradlew.bat            # Gradle wrapper scripts
-├── settings.gradle
-├── identifier.sqlite                # SQLite database file
-├── README.md                        # Project documentation
+├── Client/                          # Client module (JavaFX UI)
+│   ├── src/main/java/app/client/gui/
+│   │   ├── LoginController.java
+│   │   ├── MainController.java
+│   │   ├── SceneManager.java
+│   │   ├── Util.java
+│   ├── src/main/java/app/client/
+│   │   └── StartRpcClient.java       # Client application entry point
+│   ├── src/main/resources/
+│   │   ├── LoginWindow.fxml
+│   │   ├── MainWindow.fxml
 │
-├── src/
-│   └── main/
-│       ├── java/
-│       │   └── tickets/
-│       │       ├── controller/
-│       │       │   └── MainWindowController.java
-│       │       ├── model/
-│       │       │   ├── Match.java
-│       │       │   ├── Ticket.java
-│       │       │   └── User.java
-│       │       ├── repository/
-│       │       │   ├── IMatchRepository.java
-│       │       │   ├── ITicketRepository.java
-│       │       │   ├── IUserRepository.java
-│       │       │   ├── MatchRepository.java
-│       │       │   └── TicketRepository.java
-│       │       ├── service/
-│       │       │   └── TicketService.java
-│       │       ├── utils/
-│       │       │   └── DBUtils.java
-│       │       ├── MainApp.java                   # JavaFX Application Entry Point
-│       │       └── module-info.java               # Java Module Declaration
-│       └── resources/
-│           ├── db.properties
-│           ├── log4j2.xml
-│           └── MainWindow.fxml                    # JavaFX UI Layout File
+├── Server/                          # Server module
+│   ├── src/main/java/app/server/
+│   │   ├── BasketballServicesImpl.java
+│   │   └── StartRpcServer.java       # Server application entry point
+│   ├── src/main/resources/
+│   │   └── appserver.properties
 │
-└── target/
-    └── app.log
+├── Model/                           # Shared domain models
+│   └── src/main/java/app/model/
+│       ├── Match.java
+│       ├── Ticket.java
+│       └── User.java
+│
+├── Networking/                      # RPC Protocol and Networking
+│   ├── src/main/java/app/network/dto/
+│   │   ├── DTOUtils.java
+│   │   ├── MatchDTO.java
+│   │   ├── TicketDTO.java
+│   │   └── UserDTO.java
+│   ├── src/main/java/app/network/rpcprotocol/
+│   │   ├── BasketballClientRpcReflectionWorker.java
+│   │   ├── BasketballServicesRpcProxy.java
+│   │   ├── Request.java
+│   │   ├── RequestType.java
+│   │   ├── Response.java
+│   │   └── ResponseType.java
+│   ├── src/main/java/app/network/utils/
+│       ├── AbsConcurrentServer.java
+│       ├── AbstractServer.java
+│       ├── BasketballRpcConcurrentServer.java
+│       └── ServerException.java
+│
+├── Persistence/                     # Database repositories (SQLite)
+│   └── src/main/java/app/repository/jdbc/
+│       ├── JdbcUtils.java
+│       ├── MatchRepositoryJdbc.java
+│       ├── TicketRepositoryJdbc.java
+│       └── UserRepositoryJdbc.java
+│
+├── Services/                        # Service interfaces
+│   └── src/main/java/app/services/
+│       ├── BasketballException.java
+│       ├── IBasketballObserver.java
+│       └── IBasketballServices.java
+│
+├── logs/                             # Logs generated
+│   └── app.log
+├── build.gradle                      # Gradle multi-project build configuration
+├── settings.gradle                   # Gradle project settings
+└── README.md                         # This file
 ```
 
 ## ✨ Features
-- JavaFX **Graphical User Interface** for real-time interaction.
-- **Ticket Purchase Workflow**: Select match → Enter customer → Buy tickets.
-- **Seat Availability Tracking** and updates per match.
-- **Persistent SQLite Storage** with pre-configured database and connection.
-- **Log4j2 Logging** for repository/database actions.
-- **Modular Java (module-info.java)** with Gradle JavaFX setup.
+- 🔒 **Login / Logout** functionality with server authentication.
+- 📋 **Real-Time Match Updates**: All connected clients see instant seat updates when a ticket is sold.
+- 🎟️ **Ticket Selling**: Select a match, input customer name and number of seats to buy.
+- 🚀 **Socket-based RPC Communication** between clients and server.
+- 🧹 **Automatic Logout** on window close.
+- 🖥️ **JavaFX GUI** for login, match list, and selling tickets.
+- 📚 **Multi-Module Gradle Project** (Client, Server, Model, Networking, Persistence, Services).
+- 🛢️ **SQLite Database** persistence using custom JDBC repositories.
+- 📜 **Log4j2 Logging** integrated for important server actions.
 
-## 🚀 How to Run the App
-1. **Clone the Repository**
-   ```bash
-   git clone <repo-url>
-   cd JavaApp
-   ```
+## 🚀 How to Run
 
-2. **Open in IntelliJ IDEA**  
-   Ensure Gradle is set to build the project (File > Settings > Build Tools > Gradle > Use Gradle).
+### 1. Start the Server
+```bash
+cd Server
+./gradlew run
+```
+This will launch the **Ticket Server** on the configured port (e.g., 55556).
 
-3. **Build Project**
-   ```bash
-   ./gradlew clean build
-   ```
+### 2. Start the Client
+In a new terminal:
+```bash
+cd Client
+./gradlew run
+```
+The **Login Window** will open.
 
-4. **Run the JavaFX App**
-   ```bash
-   ./gradlew run
-   ```
-
-   This opens the **Basketball Ticket Sales** UI where you can buy tickets and view live seat updates.
+You can open multiple clients by launching the client multiple times!
 
 ## 📌 Homework Requirements Implemented
-- ✔️ **Model Classes**: `User`, `Match`, and `Ticket` defined with proper fields and constructors.
-- ✔️ **Repository Interfaces**: Structured contracts for user, match, and ticket database access.
-- ✔️ **Repository Implementations**: Concrete SQL-based logic using SQLite and `DBUtils`.
-- ✔️ **Log4j2 Logging**: Enabled in all repositories and service layers for debug and tracking.
-- ✔️ **SQLite Configuration**: Externalized via `db.properties` for secure, flexible connection.
-- ✔️ **JavaFX GUI**: Developed FXML-based GUI with controller interaction and service delegation.
-- ✔️ **Service Layer**: Centralized business logic in `TicketService`, invoked by GUI controller.
-- ✔️ **No Auto-Refresh**: Per requirements, no automatic data refresh is implemented.
+- ✔️ Modular structure using Gradle multiproject.
+- ✔️ JavaFX GUI (Login + MainWindow).
+- ✔️ Real-time client updates using Observer pattern via server push.
+- ✔️ Proper logout handling (manual or window close).
+- ✔️ Network communication via custom-designed RPC protocol.
+- ✔️ Server concurrency with thread pool handling.
+- ✔️ JDBC repositories for match/ticket/user database access.
+- ✔️ Logging via Log4j2 in repositories and services.
+- ✔️ Clean Java 21 code using JavaFX 21.
 
-## ⚙️ Dependencies & Technologies
+## ⚙️ Technologies Used
 - Java 21
 - JavaFX 21 (`javafx.controls`, `javafx.fxml`)
-- SQLite (`sqlite-jdbc`)
-- Log4j2
-- Gradle (with JavaFX and JLink plugin)
+- Gradle (multi-project setup)
+- SQLite (using `sqlite-jdbc`)
+- Sockets (TCP/IP communication)
+- Log4j2 (logging)
+- Observer design pattern
 - Modular Java (`module-info.java`)
+
+Would you also like me to quickly generate a **graphical diagram** for your architecture (client-server flow)? 📈
+It would make your README even cooler if you present this to someone! 🚀
