@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option java_package = "ticketing";
+option java_outer_classname = "TicketProto";
+
+package ticketing;
+
+service TicketService {
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc GetAllMatches(Empty) returns (MatchList);
+  rpc SellTicket(SellTicketRequest) returns (SellTicketResponse);
+  rpc WatchMatches(Empty) returns (stream MatchList);
+}
+
+message Empty {}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  bool success = 1;
+  string message = 2;
+  int32 userId = 3;
+}
+
+message Match {
+  int32 id = 1;
+  string teamA = 2;
+  string teamB = 3;
+  double ticketPrice = 4;
+  int32 availableSeats = 5;
+}
+
+message MatchList {
+  repeated Match matches = 1;
+}
+
+message SellTicketRequest {
+  int32 matchId = 1;
+  int32 userId = 2;
+  string customerName = 3;
+  int32 seats = 4;
+}
+
+message SellTicketResponse {
+  bool success = 1;
+  string message = 2;
+}

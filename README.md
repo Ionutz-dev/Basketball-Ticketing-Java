@@ -1,27 +1,42 @@
 # 🏀 Basketball Ticket Sales System (Java + JavaFX + Networking)
 
-This project is a **JavaFX-based multi-client application** for managing basketball ticket sales with **real-time updates**, **server-client communication** over a **custom RPC protocol**, and **concurrent user support**.
+This project is a **JavaFX-based multi-client application** for managing basketball ticket sales with **real-time updates**, **server-client communication** over both a **custom RPC protocol** and **gRPC**, and **concurrent user support**.
 
 ## 📁 Project Structure
+
 ```
 JavaApp/
 │
-├── Client/                          # Client module (JavaFX UI)
+├── Client/                          # JavaFX Client (RPC-based)
 │   ├── src/main/java/app/client/gui/
 │   │   ├── LoginController.java
 │   │   ├── MainController.java
 │   │   ├── SceneManager.java
 │   │   ├── Util.java
 │   ├── src/main/java/app/client/
-│   │   └── StartRpcClient.java       # Client application entry point
+│   │   └── StartRpcClient.java
 │   ├── src/main/resources/
 │   │   ├── LoginWindow.fxml
 │   │   ├── MainWindow.fxml
 │
+├── GrpcClient/                      # JavaFX Client (gRPC-based)
+│   ├── src/main/java/app/grpcclient/gui/
+│   │   ├── GrpcLoginController.java
+│   │   ├── GrpcMainController.java
+│   │   ├── SceneManager.java
+│   │   └── Util.java
+│   ├── src/main/java/app/grpcclient/
+│   │   └── GrpcStartClient.java
+│   ├── src/main/proto/
+│   │   └── ticket.proto
+│   ├── src/main/resources/
+│   │   ├── GrpcLoginWindow.fxml
+│   │   ├── GrpcMainWindow.fxml
+│
 ├── Server/                          # Server module
 │   ├── src/main/java/app/server/
 │   │   ├── BasketballServicesImpl.java
-│   │   └── StartRpcServer.java       # Server application entry point
+│   │   └── StartRpcServer.java
 │   ├── src/main/resources/
 │   │   └── appserver.properties
 │
@@ -71,52 +86,67 @@ JavaApp/
 ```
 
 ## ✨ Features
-- 🔒 **Login / Logout** functionality with server authentication.
-- 📋 **Real-Time Match Updates**: All connected clients see instant seat updates when a ticket is sold.
-- 🎟️ **Ticket Selling**: Select a match, input customer name and number of seats to buy.
-- 🚀 **Socket-based RPC Communication** between clients and server.
-- 🧹 **Automatic Logout** on window close.
-- 🖥️ **JavaFX GUI** for login, match list, and selling tickets.
-- 📚 **Multi-Module Gradle Project** (Client, Server, Model, Networking, Persistence, Services).
-- 🛢️ **SQLite Database** persistence using custom JDBC repositories.
-- 📜 **Log4j2 Logging** integrated for important server actions.
+
+* 🔒 **Login / Logout** with server authentication.
+* 📋 **Real-Time Match Updates**:
+
+    * Live ticket availability across all clients.
+    * Supports both socket and gRPC updates.
+* 🎟️ **Ticket Selling** with customer and seat count input.
+* 🚀 **Dual Communication Protocols**:
+
+    * Sockets (custom RPC protocol)
+    * gRPC (with server-streaming using `WatchMatches`)
+* 🖥️ **JavaFX GUI** with separate views for socket and gRPC clients.
+* 🔄 **Automatic logout** and cleanup on window close.
+* 🧪 **gRPC Module (`GrpcClient`)** fully compatible with the C# gRPC server.
+* 📚 **Modular Gradle Project** with clear domain separation.
+* 🛢️ **SQLite JDBC persistence** with repositories.
+* 🧾 **Log4j2 Logging** integrated in all repositories and services.
 
 ## 🚀 How to Run
 
 ### 1. Start the Server
+
 ```bash
 cd Server
 ./gradlew run
 ```
-This will launch the **Ticket Server** on the configured port (e.g., 55556).
 
-### 2. Start the Client
-In a new terminal:
+### 2. Start the RPC Client (Socket)
+
 ```bash
 cd Client
 ./gradlew run
 ```
-The **Login Window** will open.
 
-You can open multiple clients by launching the client multiple times!
+### 3. Start the gRPC Client (JavaFX + gRPC)
+
+```bash
+cd GrpcClient
+./gradlew run
+```
+
+> You can run multiple clients (RPC or gRPC) at the same time.
 
 ## 📌 Homework Requirements Implemented
-- ✔️ Modular structure using Gradle multiproject.
-- ✔️ JavaFX GUI (Login + MainWindow).
-- ✔️ Real-time client updates using Observer pattern via server push.
-- ✔️ Proper logout handling (manual or window close).
-- ✔️ Network communication via custom-designed RPC protocol.
-- ✔️ Server concurrency with thread pool handling.
-- ✔️ JDBC repositories for match/ticket/user database access.
-- ✔️ Logging via Log4j2 in repositories and services.
-- ✔️ Clean Java 21 code using JavaFX 21.
+
+* ✔️ Modular Gradle multi-project setup.
+* ✔️ JavaFX GUI (for both RPC and gRPC clients).
+* ✔️ Real-time updates with both socket-based and gRPC communication.
+* ✔️ Streaming gRPC with `WatchMatches()`.
+* ✔️ Cross-platform compatibility (gRPC works with C# server).
+* ✔️ SQLite database with JDBC.
+* ✔️ Logging via Log4j2.
+* ✔️ Observer pattern and concurrent server handling.
 
 ## ⚙️ Technologies Used
-- Java 21
-- JavaFX 21 (`javafx.controls`, `javafx.fxml`)
-- Gradle (multi-project setup)
-- SQLite (using `sqlite-jdbc`)
-- Sockets (TCP/IP communication)
-- Log4j2 (logging)
-- Observer design pattern
-- Modular Java (`module-info.java`)
+
+* Java 21
+* JavaFX 21
+* Gradle (multi-module)
+* SQLite via `sqlite-jdbc`
+* gRPC + Protobuf
+* TCP Sockets (custom protocol)
+* Log4j2
+* Java Concurrency APIs
