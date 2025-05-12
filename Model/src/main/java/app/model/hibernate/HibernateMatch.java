@@ -2,10 +2,14 @@ package app.model.hibernate;
 
 import app.model.Match;
 import jakarta.persistence.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Entity
 @Table(name = "Matches")
 public class HibernateMatch {
+    private static final Logger logger = LogManager.getLogger(HibernateMatch.class);
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -16,10 +20,13 @@ public class HibernateMatch {
     private int availableSeats;
 
     public HibernateMatch() {
-        // Required by Hibernate
+        logger.debug("Creating empty HibernateMatch instance");
     }
 
     public HibernateMatch(Match match) {
+        logger.debug("Creating HibernateMatch from Match: id={}, teamA={}, teamB={}",
+                match.getId(), match.getTeamA(), match.getTeamB());
+
         this.id = match.getId();
         this.teamA = match.getTeamA();
         this.teamB = match.getTeamB();
@@ -28,6 +35,7 @@ public class HibernateMatch {
     }
 
     public Match toMatch() {
+        logger.debug("Converting HibernateMatch to Match: id={}", id);
         return new Match(id, teamA, teamB, ticketPrice, availableSeats);
     }
 
@@ -37,6 +45,7 @@ public class HibernateMatch {
     }
 
     public void setId(int id) {
+        logger.trace("Setting HibernateMatch id: {}", id);
         this.id = id;
     }
 
@@ -45,6 +54,7 @@ public class HibernateMatch {
     }
 
     public void setTeamA(String teamA) {
+        logger.trace("Setting HibernateMatch teamA: {}", teamA);
         this.teamA = teamA;
     }
 
@@ -53,6 +63,7 @@ public class HibernateMatch {
     }
 
     public void setTeamB(String teamB) {
+        logger.trace("Setting HibernateMatch teamB: {}", teamB);
         this.teamB = teamB;
     }
 
@@ -61,6 +72,7 @@ public class HibernateMatch {
     }
 
     public void setTicketPrice(double ticketPrice) {
+        logger.trace("Setting HibernateMatch ticketPrice: {}", ticketPrice);
         this.ticketPrice = ticketPrice;
     }
 
@@ -69,6 +81,7 @@ public class HibernateMatch {
     }
 
     public void setAvailableSeats(int availableSeats) {
+        logger.debug("Setting HibernateMatch availableSeats from {} to {}", this.availableSeats, availableSeats);
         this.availableSeats = availableSeats;
     }
 

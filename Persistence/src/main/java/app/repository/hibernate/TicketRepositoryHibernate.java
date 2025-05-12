@@ -16,24 +16,30 @@ public class TicketRepositoryHibernate implements ITicketRepository {
     private final SessionFactory sessionFactory;
 
     public TicketRepositoryHibernate(Properties props) {
+        logger.info("Initializing Hibernate Ticket Repository");
         this.sessionFactory = HibernateUtils.getSessionFactory(props);
     }
 
     @Override
     public void save(Ticket ticket) {
-        logger.info("Saving ticket with Hibernate: matchId={}, userId={}, customer={}",
-                ticket.getMatchId(), ticket.getUserId(), ticket.getCustomerName());
+        logger.debug("Saving ticket with Hibernate: matchId={}, userId={}, customer={}, seats={}",
+                ticket.getMatchId(), ticket.getUserId(), ticket.getCustomerName(), ticket.getSeatsSold());
 
         try (Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
 
+            logger.debug("Converting Ticket to HibernateTicket");
             HibernateTicket hibernateTicket = new HibernateTicket(ticket);
+
+            logger.debug("Persisting HibernateTicket entity");
             session.persist(hibernateTicket);
 
+            logger.debug("Committing transaction");
             tx.commit();
+
             logger.info("Ticket saved successfully with id: {}", hibernateTicket.getId());
         } catch (Exception e) {
-            logger.error("Error saving ticket", e);
+            logger.error("Error saving ticket with Hibernate", e);
         }
     }
 }

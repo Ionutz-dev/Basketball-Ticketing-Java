@@ -16,19 +16,20 @@ public class UserRepositoryHibernate implements IUserRepository {
     private final SessionFactory sessionFactory;
 
     public UserRepositoryHibernate(Properties props) {
+        logger.info("Initializing Hibernate User Repository");
         this.sessionFactory = HibernateUtils.getSessionFactory(props);
     }
 
     @Override
     public User findByUsernameAndPassword(String username, String password) {
-        logger.info("Finding user with username={}", username);
+        logger.debug("Finding user with username={} using Hibernate", username);
         User user = null;
 
         try (Session session = sessionFactory.openSession()) {
-            Query<HibernateUser> query = session.createQuery(
-                    "FROM HibernateUser WHERE username = :username AND password = :password",
-                    HibernateUser.class
-            );
+            String hql = "FROM HibernateUser WHERE username = :username AND password = :password";
+            logger.debug("Executing HQL: {}", hql);
+
+            Query<HibernateUser> query = session.createQuery(hql, HibernateUser.class);
             query.setParameter("username", username);
             query.setParameter("password", password);
 
@@ -36,12 +37,12 @@ public class UserRepositoryHibernate implements IUserRepository {
 
             if (hibernateUser != null) {
                 user = hibernateUser.toUser();
-                logger.info("Found user: {}", user.getUsername());
+                logger.info("Found user with username={}, id={}", username, user.getId());
             } else {
-                logger.warn("User with username {} not found", username);
+                logger.warn("No user found with username={}", username);
             }
         } catch (Exception e) {
-            logger.error("Error finding user by username and password", e);
+            logger.error("Error finding user by username and password with Hibernate", e);
         }
 
         return user;

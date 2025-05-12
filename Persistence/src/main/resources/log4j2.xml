@@ -4,8 +4,8 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <RollingFile name="RollingFile" fileName="logs/services.log"
-                     filePattern="logs/services-%d{MM-dd-yyyy}-%i.log.gz">
+        <RollingFile name="RollingFile" fileName="logs/persistence.log"
+                     filePattern="logs/persistence-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout>
                 <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
             </PatternLayout>
@@ -21,11 +21,16 @@
             <AppenderRef ref="Console" level="info"/>
             <AppenderRef ref="RollingFile" level="debug"/>
         </Root>
-        <Logger name="app.services" level="debug" additivity="false">
+        <Logger name="app.repository" level="debug" additivity="false">
             <AppenderRef ref="Console" level="info"/>
             <AppenderRef ref="RollingFile" level="debug"/>
         </Logger>
-        <Logger name="app.server" level="debug" additivity="false">
+        <!-- Reduce the noise from Hibernate -->
+        <Logger name="org.hibernate" level="warn" additivity="false">
+            <AppenderRef ref="Console" level="warn"/>
+            <AppenderRef ref="RollingFile" level="info"/>
+        </Logger>
+        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
             <AppenderRef ref="Console" level="info"/>
             <AppenderRef ref="RollingFile" level="debug"/>
         </Logger>

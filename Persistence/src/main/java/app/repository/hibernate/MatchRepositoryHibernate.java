@@ -20,25 +20,28 @@ public class MatchRepositoryHibernate implements IMatchRepository {
     private final SessionFactory sessionFactory;
 
     public MatchRepositoryHibernate(Properties props) {
+        logger.info("Initializing Hibernate Match Repository");
         this.sessionFactory = HibernateUtils.getSessionFactory(props);
     }
 
     @Override
     public List<Match> findAll() {
-        logger.info("Fetching all matches with Hibernate");
+        logger.debug("Finding all matches with Hibernate");
         List<Match> matches = new ArrayList<>();
 
         try (Session session = sessionFactory.openSession()) {
+            logger.debug("Executing HQL: FROM HibernateMatch");
             Query<HibernateMatch> query = session.createQuery("FROM HibernateMatch", HibernateMatch.class);
             List<HibernateMatch> hibernateMatches = query.list();
 
+            logger.debug("Converting {} HibernateMatch entities to Match objects", hibernateMatches.size());
             matches = hibernateMatches.stream()
                     .map(HibernateMatch::toMatch)
                     .collect(Collectors.toList());
 
-            logger.info("Fetched {} matches", matches.size());
+            logger.info("Found {} matches", matches.size());
         } catch (Exception e) {
-            logger.error("Error fetching all matches", e);
+            logger.error("Error finding all matches with Hibernate", e);
         }
 
         return matches;
@@ -46,24 +49,24 @@ public class MatchRepositoryHibernate implements IMatchRepository {
 
     @Override
     public List<Match> findAvailableMatches() {
-        logger.info("Fetching available matches with Hibernate");
+        logger.debug("Finding available matches with Hibernate");
         List<Match> matches = new ArrayList<>();
 
         try (Session session = sessionFactory.openSession()) {
-            Query<HibernateMatch> query = session.createQuery(
-                    "FROM HibernateMatch WHERE availableSeats > 0 ORDER BY availableSeats DESC",
-                    HibernateMatch.class
-            );
+            String hql = "FROM HibernateMatch WHERE availableSeats > 0 ORDER BY availableSeats DESC";
+            logger.debug("Executing HQL: {}", hql);
 
+            Query<HibernateMatch> query = session.createQuery(hql, HibernateMatch.class);
             List<HibernateMatch> hibernateMatches = query.list();
 
+            logger.debug("Converting {} HibernateMatch entities to Match objects", hibernateMatches.size());
             matches = hibernateMatches.stream()
                     .map(HibernateMatch::toMatch)
                     .collect(Collectors.toList());
 
-            logger.info("Fetched {} available matches", matches.size());
+            logger.info("Found {} available matches", matches.size());
         } catch (Exception e) {
-            logger.error("Error fetching available matches", e);
+            logger.error("Error finding available matches with Hibernate", e);
         }
 
         return matches;
@@ -71,42 +74,52 @@ public class MatchRepositoryHibernate implements IMatchRepository {
 
     @Override
     public void updateSeats(int matchId, int seatsSold) {
-        logger.info("Updating seats for match {} with Hibernate, seats sold: {}", matchId, seatsSold);
+        logger.debug("Updating seats for match id={}, seats sold={} with Hibernate", matchId, seatsSold);
 
         try (Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
 
+            logger.debug("Retrieving match with id={}", matchId);
             HibernateMatch match = session.get(HibernateMatch.class, matchId);
-            if (match != null) {
-                match.setAvailableSeats(match.getAvailableSeats() - seatsSold);
-                session.persist(match);
-                logger.info("Match seats updated, new available seats: {}", match.getAvailableSeats());
-            } else {
-                logger.warn("Match with id {} not found", matchId);
-            }
 
-            tx.commit();
+            if (match != null) {
+                int currentSeats = match.getAvailableSeats();
+                int newSeats = currentSeats - seatsSold;
+
+                logger.debug("Updating available seats from {} to {}", currentSeats, newSeats);
+                match.setAvailableSeats(newSeats);
+                session.persist(match);
+
+                logger.debug("Committing transaction");
+                tx.commit();
+
+                logger.info("Successfully updated seats for match id={}", matchId);
+            } else {
+                logger.warn("No match found with id={} for seat update", matchId);
+                tx.rollback();
+            }
         } catch (Exception e) {
-            logger.error("Error updating seats for match {}", matchId, e);
+            logger.error("Error updating seats for match id={}", matchId, e);
         }
     }
 
     @Override
     public Match findMatchById(int matchId) {
-        logger.info("Finding match by id {} with Hibernate", matchId);
+        logger.debug("Finding match by id={} with Hibernate", matchId);
         Match match = null;
 
         try (Session session = sessionFactory.openSession()) {
+            logger.debug("Retrieving HibernateMatch with id={}", matchId);
             HibernateMatch hibernateMatch = session.get(HibernateMatch.class, matchId);
 
             if (hibernateMatch != null) {
                 match = hibernateMatch.toMatch();
-                logger.info("Found match: {}", match);
+                logger.info("Found match with id={}: {}", matchId, match);
             } else {
-                logger.warn("Match with id {} not found", matchId);
+                logger.warn("No match found with id={}", matchId);
             }
         } catch (Exception e) {
-            logger.error("Error finding match by id {}", matchId, e);
+            logger.error("Error finding match by id={} with Hibernate", matchId, e);
         }
 
         return match;

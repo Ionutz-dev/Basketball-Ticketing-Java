@@ -16,22 +16,32 @@ public class HibernateUtils {
 
     public static SessionFactory getSessionFactory(Properties props) {
         if (sessionFactory == null || sessionFactory.isClosed()) {
+            logger.debug("Creating new Hibernate SessionFactory");
             sessionFactory = createSessionFactory(props);
+        } else {
+            logger.trace("Reusing existing Hibernate SessionFactory");
         }
         return sessionFactory;
     }
 
     private static SessionFactory createSessionFactory(Properties props) {
-        logger.info("Creating Hibernate SessionFactory");
+        logger.info("Initializing Hibernate SessionFactory");
         try {
             Configuration configuration = new Configuration();
 
             // Database connection settings
             Properties hibernateProps = new Properties();
-            hibernateProps.put("hibernate.connection.driver_class", props.getProperty("jdbc.driver"));
-            hibernateProps.put("hibernate.connection.url", props.getProperty("jdbc.url"));
-            hibernateProps.put("hibernate.connection.username", props.getProperty("jdbc.user", ""));
-            hibernateProps.put("hibernate.connection.password", props.getProperty("jdbc.pass", ""));
+            String driver = props.getProperty("jdbc.driver");
+            String url = props.getProperty("jdbc.url");
+            String user = props.getProperty("jdbc.user", "");
+            String pass = props.getProperty("jdbc.pass", "");
+
+            logger.debug("Configuring Hibernate connection: driver={}, url={}", driver, url);
+
+            hibernateProps.put("hibernate.connection.driver_class", driver);
+            hibernateProps.put("hibernate.connection.url", url);
+            hibernateProps.put("hibernate.connection.username", user);
+            hibernateProps.put("hibernate.connection.password", pass);
 
             // SQLite dialect
             hibernateProps.put("hibernate.dialect", "org.hibernate.community.dialect.SQLiteDialect");
@@ -44,15 +54,16 @@ public class HibernateUtils {
             configuration.setProperties(hibernateProps);
 
             // Add annotated classes
+            logger.debug("Registering entity classes with Hibernate");
             configuration.addAnnotatedClass(HibernateMatch.class);
             configuration.addAnnotatedClass(HibernateTicket.class);
             configuration.addAnnotatedClass(HibernateUser.class);
 
-            logger.info("Hibernate configuration created, building SessionFactory");
+            logger.info("Building Hibernate SessionFactory");
             return configuration.buildSessionFactory();
         } catch (Exception e) {
-            logger.error("Error creating SessionFactory", e);
-            throw new RuntimeException("Error creating SessionFactory", e);
+            logger.error("Error creating Hibernate SessionFactory", e);
+            throw new RuntimeException("Error creating Hibernate SessionFactory", e);
         }
     }
 
@@ -60,6 +71,9 @@ public class HibernateUtils {
         if (sessionFactory != null && !sessionFactory.isClosed()) {
             logger.info("Closing Hibernate SessionFactory");
             sessionFactory.close();
+            logger.debug("Hibernate SessionFactory closed successfully");
+        } else {
+            logger.debug("No open SessionFactory to close");
         }
     }
 }
