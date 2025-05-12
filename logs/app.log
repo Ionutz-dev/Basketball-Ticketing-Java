@@ -96,3 +96,27 @@
 29 Apr 2025 00:46:26,468 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
 29 Apr 2025 00:50:28,673 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
 29 Apr 2025 00:50:35,087 INFO  app.repository.jdbc.MatchRepositoryJdbc 53 findAvailableMatches - Fetched available matches
+12 May 2025 21:13:21,362 INFO  app.repository.hibernate.HibernateUtils 25 createSessionFactory - Creating Hibernate SessionFactory
+12 May 2025 21:13:21,558 INFO  org.hibernate.Version 44 logVersion - HHH000412: Hibernate ORM core version 6.4.4.Final
+12 May 2025 21:13:21,614 INFO  app.repository.hibernate.HibernateUtils 51 createSessionFactory - Hibernate configuration created, building SessionFactory
+12 May 2025 21:13:21,673 INFO  org.hibernate.cache.internal.RegionFactoryInitiator 50 initiateService - HHH000026: Second-level cache disabled
+12 May 2025 21:13:21,847 WARN  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl 81 configure - HHH10001002: Using built-in connection pool (not intended for production use)
+12 May 2025 21:13:21,854 INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl 136 buildCreator - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+12 May 2025 21:13:21,854 INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl 158 buildCreator - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:E:/UBB/Year-2/Sem-2/MPP/Labs/JavaApp/identifier.sqlite]
+12 May 2025 21:13:21,855 INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl 167 buildCreator - HHH10001001: Connection properties: {user=, password=****}
+12 May 2025 21:13:21,855 INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl 171 buildCreator - HHH10001003: Autocommit mode: false
+12 May 2025 21:13:21,858 INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections 371 <init> - HHH10001115: Connection pool size: 20 (min=1)
+12 May 2025 21:13:23,424 INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator 58 initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+12 May 2025 21:13:23,449 INFO  org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl 52 getIsolatedConnection - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1d858300] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+12 May 2025 21:13:43,347 INFO  app.repository.hibernate.UserRepositoryHibernate 24 findByUsernameAndPassword - Finding user with username=admin
+12 May 2025 21:13:43,907 INFO  app.repository.hibernate.UserRepositoryHibernate 39 findByUsernameAndPassword - Found user: admin
+12 May 2025 21:13:43,965 INFO  app.repository.hibernate.MatchRepositoryHibernate 49 findAvailableMatches - Fetching available matches with Hibernate
+12 May 2025 21:13:43,995 INFO  app.repository.hibernate.MatchRepositoryHibernate 64 findAvailableMatches - Fetched 3 available matches
+12 May 2025 21:13:50,097 INFO  app.repository.hibernate.TicketRepositoryHibernate 24 save - Saving ticket with Hibernate: matchId=3, userId=1, customer=hatz
+12 May 2025 21:13:50,131 INFO  app.repository.hibernate.TicketRepositoryHibernate 34 save - Ticket saved successfully with id: 56
+12 May 2025 21:13:50,131 INFO  app.repository.hibernate.MatchRepositoryHibernate 74 updateSeats - Updating seats for match 3 with Hibernate, seats sold: 2
+12 May 2025 21:13:50,137 INFO  app.repository.hibernate.MatchRepositoryHibernate 83 updateSeats - Match seats updated, new available seats: 42
+12 May 2025 21:13:50,153 INFO  app.repository.hibernate.MatchRepositoryHibernate 49 findAvailableMatches - Fetching available matches with Hibernate
+12 May 2025 21:13:50,156 INFO  app.repository.hibernate.MatchRepositoryHibernate 64 findAvailableMatches - Fetched 3 available matches
+12 May 2025 21:13:50,157 INFO  app.repository.hibernate.MatchRepositoryHibernate 49 findAvailableMatches - Fetching available matches with Hibernate
+12 May 2025 21:13:50,159 INFO  app.repository.hibernate.MatchRepositoryHibernate 64 findAvailableMatches - Fetched 3 available matches
