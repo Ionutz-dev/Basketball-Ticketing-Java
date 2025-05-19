@@ -1,31 +1,37 @@
-package matchrest;
+package app.rest;
 
 import app.repository.IMatchRepository;
-import app.repository.ITicketRepository;
-import app.repository.IUserRepository;
-import app.repository.hibernate.MatchRepositoryHibernate;
-import app.repository.hibernate.TicketRepositoryHibernate;
-import app.repository.hibernate.UserRepositoryHibernate;
+import app.repository.rest.MatchRestRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Primary;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
-// Remove the redundant @ComponentScan - it's already included in @SpringBootApplication
 @SpringBootApplication
-public class StartRestServices {
+public class StartRestServices implements WebMvcConfigurer {
+
     public static void main(String[] args) {
         SpringApplication.run(StartRestServices.class, args);
     }
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*");
+    }
+
     @Bean(name = "appProperties")
-    @Primary  // Mark this as the primary Properties bean
+    @Primary
     public Properties getDBProperties() {
         Properties props = new Properties();
         try {
@@ -43,17 +49,12 @@ public class StartRestServices {
     }
 
     @Bean
-    public IMatchRepository matchRepository(@Qualifier("appProperties") Properties props) {
-        return new MatchRepositoryHibernate(props);
+    public IMatchRepository matchRepository(Properties props) {
+        return new MatchRestRepository(props);
     }
 
     @Bean
-    public ITicketRepository ticketRepository(@Qualifier("appProperties") Properties props) {
-        return new TicketRepositoryHibernate(props);
-    }
-
-    @Bean
-    public IUserRepository userRepository(@Qualifier("appProperties") Properties props) {
-        return new UserRepositoryHibernate(props);
+    public MatchRestController matchRestController(Properties props) {
+        return new MatchRestController(props);
     }
 }

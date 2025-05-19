@@ -1,4 +1,4 @@
-package matchclient;
+package app.restclient;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -22,8 +22,10 @@ public class MatchClient {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
+        System.out.println("\n=== Basketball Match REST Client (Java) ===");
+
         while (running) {
-            System.out.println("\n--- Basketball Match REST Client ---");
+            System.out.println("\n--- Menu ---");
             System.out.println("1. Get all matches");
             System.out.println("2. Get match by ID");
             System.out.println("3. Create match");
@@ -33,7 +35,7 @@ public class MatchClient {
             System.out.print("\nSelect an option: ");
 
             int option = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             try {
                 switch (option) {
@@ -60,12 +62,14 @@ public class MatchClient {
                         break;
                     case 0:
                         running = false;
+                        System.out.println("Exiting...");
                         break;
                     default:
                         System.out.println("Invalid option!");
                 }
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
+                e.printStackTrace();
             }
         }
 
@@ -74,25 +78,38 @@ public class MatchClient {
     }
 
     private static void getAllMatches() throws IOException {
+        System.out.println("\nFetching all matches...");
         HttpGet request = new HttpGet(URL);
         request.addHeader("Accept", "application/json");
 
         try (CloseableHttpResponse response = httpClient.execute(request)) {
-            String json = EntityUtils.toString(response.getEntity());
-            Match[] matches = gson.fromJson(json, Match[].class);
+            printResponseStatus(response);
 
-            System.out.println("\n--- All Matches ---");
-            for (Match match : matches) {
-                System.out.println(match);
+            if (response.getStatusLine().getStatusCode() == 200) {
+                String json = EntityUtils.toString(response.getEntity());
+                Match[] matches = gson.fromJson(json, Match[].class);
+
+                System.out.println("\n--- All Matches ---");
+                if (matches.length == 0) {
+                    System.out.println("No matches found.");
+                } else {
+                    for (Match match : matches) {
+                        System.out.println(match);
+                    }
+                    System.out.println("\nTotal matches: " + matches.length);
+                }
             }
         }
     }
 
     private static void getMatchById(int id) throws IOException {
+        System.out.println("\nFetching match with ID: " + id);
         HttpGet request = new HttpGet(URL + "/" + id);
         request.addHeader("Accept", "application/json");
 
         try (CloseableHttpResponse response = httpClient.execute(request)) {
+            printResponseStatus(response);
+
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == 200) {
                 String json = EntityUtils.toString(response.getEntity());
@@ -101,13 +118,12 @@ public class MatchClient {
                 System.out.println(match);
             } else if (statusCode == 404) {
                 System.out.println("Match not found with ID: " + id);
-            } else {
-                System.out.println("Error: " + statusCode);
             }
         }
     }
 
     private static void createMatch(Scanner scanner) throws IOException {
+        System.out.println("\nCreating a new match...");
         Match match = new Match();
 
         System.out.print("Enter Team A: ");
@@ -132,20 +148,21 @@ public class MatchClient {
         request.setEntity(new StringEntity(json));
 
         try (CloseableHttpResponse response = httpClient.execute(request)) {
+            printResponseStatus(response);
+
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == 200 || statusCode == 201) {
                 String responseJson = EntityUtils.toString(response.getEntity());
                 Match createdMatch = gson.fromJson(responseJson, Match.class);
                 System.out.println("\n--- Created Match ---");
                 System.out.println(createdMatch);
-            } else {
-                System.out.println("Error creating match: " + statusCode);
+                System.out.println("\nMatch created successfully with ID: " + createdMatch.getId());
             }
         }
     }
 
     private static void updateMatch(Scanner scanner) throws IOException {
-        System.out.print("Enter match ID to update: ");
+        System.out.print("\nEnter match ID to update: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Consume newline
 
@@ -154,6 +171,8 @@ public class MatchClient {
         getRequest.addHeader("Accept", "application/json");
 
         try (CloseableHttpResponse getResponse = httpClient.execute(getRequest)) {
+            printResponseStatus(getResponse);
+
             int statusCode = getResponse.getStatusLine().getStatusCode();
             if (statusCode == 404) {
                 System.out.println("Match not found with ID: " + id);
@@ -165,6 +184,9 @@ public class MatchClient {
 
             String json = EntityUtils.toString(getResponse.getEntity());
             Match match = gson.fromJson(json, Match.class);
+            System.out.println("\nCurrent match details: " + match);
+
+            System.out.println("\nEnter new values (leave empty to keep current value):");
 
             System.out.print("Enter Team A (current: " + match.getTeamA() + "): ");
             String teamA = scanner.nextLine();
@@ -198,35 +220,42 @@ public class MatchClient {
             updateRequest.setEntity(new StringEntity(updateJson));
 
             try (CloseableHttpResponse updateResponse = httpClient.execute(updateRequest)) {
+                printResponseStatus(updateResponse);
+
                 int updateStatusCode = updateResponse.getStatusLine().getStatusCode();
                 if (updateStatusCode == 200) {
                     String responseJson = EntityUtils.toString(updateResponse.getEntity());
                     Match updatedMatch = gson.fromJson(responseJson, Match.class);
                     System.out.println("\n--- Updated Match ---");
                     System.out.println(updatedMatch);
-                } else {
-                    System.out.println("Error updating match: " + updateStatusCode);
+                    System.out.println("\nMatch updated successfully!");
                 }
             }
         }
     }
 
     private static void deleteMatch(int id) throws IOException {
+        System.out.println("\nDeleting match with ID: " + id);
         HttpDelete request = new HttpDelete(URL + "/" + id);
 
         try (CloseableHttpResponse response = httpClient.execute(request)) {
+            printResponseStatus(response);
+
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == 204) {
                 System.out.println("Match deleted successfully!");
             } else if (statusCode == 404) {
                 System.out.println("Match not found with ID: " + id);
-            } else {
-                System.out.println("Error deleting match: " + statusCode);
             }
         }
     }
 
-    // Inner class for Match model
+    private static void printResponseStatus(CloseableHttpResponse response) {
+        int statusCode = response.getStatusLine().getStatusCode();
+        String reason = response.getStatusLine().getReasonPhrase();
+        System.out.println("Response: " + statusCode + " " + reason);
+    }
+
     static class Match {
         private int id;
         private String teamA;
