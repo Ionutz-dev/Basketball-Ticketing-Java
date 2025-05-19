@@ -234,7 +234,7 @@ public class GrpcMainController {
 
             GrpcLoginController loginController = loader.getController();
             Stage stage = (Stage) matchTable.getScene().getWindow();
-            loginController.setStage(stage); // reuse the same stage
+            loginController.setStage(stage);
 
             Scene scene = new Scene(loginRoot);
             stage.setScene(scene);

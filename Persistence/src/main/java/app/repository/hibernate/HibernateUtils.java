@@ -29,7 +29,6 @@ public class HibernateUtils {
         try {
             Configuration configuration = new Configuration();
 
-            // Database connection settings
             Properties hibernateProps = new Properties();
             String driver = props.getProperty("jdbc.driver");
             String url = props.getProperty("jdbc.url");
@@ -43,17 +42,14 @@ public class HibernateUtils {
             hibernateProps.put("hibernate.connection.username", user);
             hibernateProps.put("hibernate.connection.password", pass);
 
-            // SQLite dialect
             hibernateProps.put("hibernate.dialect", "org.hibernate.community.dialect.SQLiteDialect");
 
-            // Other Hibernate properties
             hibernateProps.put("hibernate.show_sql", "true");
             hibernateProps.put("hibernate.format_sql", "true");
             hibernateProps.put("hibernate.hbm2ddl.auto", "update");
 
             configuration.setProperties(hibernateProps);
 
-            // Add annotated classes
             logger.debug("Registering entity classes with Hibernate");
             configuration.addAnnotatedClass(HibernateMatch.class);
             configuration.addAnnotatedClass(HibernateTicket.class);

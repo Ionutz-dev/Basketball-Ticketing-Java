@@ -1,0 +1,174 @@
+22:54:02.949 [main] INFO  app.grpcclient.GrpcStartClient - gRPC Client application main method invoked
+22:54:02.978 [JavaFX Application Thread] INFO  app.grpcclient.GrpcStartClient - Starting gRPC Client application
+22:54:02.979 [JavaFX Application Thread] DEBUG app.grpcclient.GrpcStartClient - Loading GrpcLoginWindow.fxml
+22:54:03.324 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Setting stage in GrpcLoginController
+22:54:03.325 [JavaFX Application Thread] DEBUG app.grpcclient.GrpcStartClient - Stage set in GrpcLoginController
+22:54:03.651 [JavaFX Application Thread] INFO  app.grpcclient.GrpcStartClient - Application started and login window displayed
+22:54:09.896 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcLoginController - Login attempt for user: admin
+22:54:09.897 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Creating gRPC channel to localhost:50051
+22:54:10.259 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Creating TicketService stub
+22:54:10.285 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Sending gRPC login request for user: admin
+22:54:10.628 [JavaFX Application Thread] ERROR app.grpcclient.gui.GrpcLoginController - gRPC status error during login
+io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+	at io.grpc.stub.ClientCalls.toStatusRuntimeException(ClientCalls.java:268) ~[grpc-stub-1.61.0.jar:1.61.0]
+	at io.grpc.stub.ClientCalls.getUnchecked(ClientCalls.java:249) ~[grpc-stub-1.61.0.jar:1.61.0]
+	at io.grpc.stub.ClientCalls.blockingUnaryCall(ClientCalls.java:167) ~[grpc-stub-1.61.0.jar:1.61.0]
+	at ticketing.TicketServiceGrpc$TicketServiceBlockingStub.login(TicketServiceGrpc.java:298) ~[classes/:?]
+	at app.grpcclient.gui.GrpcLoginController.handleLogin(GrpcLoginController.java:65) ~[classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72) ~[javafx.base.jar:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at javafx.base/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270) ~[javafx.base.jar:?]
+	at javafx.fxml/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84) ~[javafx.fxml.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1855) ~[javafx.fxml.jar:?]
+	at javafx.fxml/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726) ~[javafx.fxml.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49) ~[javafx.base.jar:?]
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198) ~[javafx.base.jar:?]
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8875) ~[javafx.graphics.jar:?]
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203) ~[javafx.controls.jar:?]
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207) ~[javafx.controls.jar:?]
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274) ~[javafx.controls.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) ~[javafx.base.jar:?]
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198) ~[javafx.base.jar:?]
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3984) ~[javafx.graphics.jar:?]
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1890) ~[javafx.graphics.jar:?]
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301) ~[javafx.graphics.jar:?]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400) ~[?:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:551) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:937) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185) ~[javafx.graphics.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:1575) [?:?]
+Caused by: io.grpc.netty.shaded.io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/[0:0:0:0:0:0:0:1]:50051
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[?:?]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:1062) ~[?:?]
+	at io.grpc.netty.shaded.io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[grpc-netty-shaded-1.61.0.jar:1.61.0]
+	at io.grpc.netty.shaded.io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334) ~[grpc-netty-shaded-1.61.0.jar:1.61.0]
+	at io.grpc.netty.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[grpc-netty-shaded-1.61.0.jar:1.61.0]
+	at io.grpc.netty.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[grpc-netty-shaded-1.61.0.jar:1.61.0]
+	at io.grpc.netty.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[grpc-netty-shaded-1.61.0.jar:1.61.0]
+	at io.grpc.netty.shaded.io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[grpc-netty-shaded-1.61.0.jar:1.61.0]
+	at io.grpc.netty.shaded.io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[grpc-netty-shaded-1.61.0.jar:1.61.0]
+	at io.grpc.netty.shaded.io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[grpc-netty-shaded-1.61.0.jar:1.61.0]
+	at io.grpc.netty.shaded.io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[grpc-netty-shaded-1.61.0.jar:1.61.0]
+	... 1 more
+22:54:10.650 [JavaFX Application Thread] DEBUG app.grpcclient.gui.Util - Showing error dialog: title='gRPC Error', message='Login failed: Status{code=UNAVAILABLE, description=io exception, cause=io.grpc.netty.shaded.io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/[0:0:0:0:0:0:0:1]:50051
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:1062)
+	at io.grpc.netty.shaded.io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.grpc.netty.shaded.io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.grpc.netty.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.grpc.netty.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.grpc.netty.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.grpc.netty.shaded.io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.grpc.netty.shaded.io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.grpc.netty.shaded.io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+}'
+22:54:16.077 [JavaFX Application Thread] DEBUG app.grpcclient.gui.Util - Error dialog closed
+22:57:31.720 [main] INFO  app.grpcclient.GrpcStartClient - gRPC Client application main method invoked
+22:57:31.748 [JavaFX Application Thread] INFO  app.grpcclient.GrpcStartClient - Starting gRPC Client application
+22:57:31.749 [JavaFX Application Thread] DEBUG app.grpcclient.GrpcStartClient - Loading GrpcLoginWindow.fxml
+22:57:32.052 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Setting stage in GrpcLoginController
+22:57:32.052 [JavaFX Application Thread] DEBUG app.grpcclient.GrpcStartClient - Stage set in GrpcLoginController
+22:57:32.391 [JavaFX Application Thread] INFO  app.grpcclient.GrpcStartClient - Application started and login window displayed
+22:57:37.478 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcLoginController - Login attempt for user: admin
+22:57:37.478 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Creating gRPC channel to localhost:50051
+22:57:37.838 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Creating TicketService stub
+22:57:37.847 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Sending gRPC login request for user: admin
+22:57:38.388 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcLoginController - Login successful: username=admin, userId=1
+22:57:38.388 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Loading GrpcMainWindow.fxml
+22:57:38.436 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting gRPC stub in GrpcMainController
+22:57:38.436 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting gRPC channel in GrpcMainController
+22:57:38.436 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting username: admin
+22:57:38.437 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting userId: 1
+22:57:38.437 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcMainController - Initializing GrpcMainController data
+22:57:38.437 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting up table columns
+22:57:38.439 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcMainController - Loading matches data
+22:57:38.441 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting up matches stream observer
+22:57:38.441 [Thread-3] DEBUG app.grpcclient.gui.GrpcMainController - Sending gRPC request for all matches
+22:57:38.464 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Match stream observer setup complete
+22:57:38.465 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - GrpcMainController initialized
+22:57:38.530 [Thread-3] DEBUG app.grpcclient.gui.GrpcMainController - Received 3 matches
+22:57:38.646 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcLoginController - Main window displayed for user: admin
+22:57:38.647 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Match table updated with data
+22:57:50.673 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcMainController - Sell ticket operation requested
+22:57:50.674 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Selling ticket: matchId=1, userId=1, customer=hatz, seats=2
+22:57:50.723 [grpc-default-executor-1] DEBUG app.grpcclient.gui.GrpcMainController - Received match updates from stream, count: 3
+22:57:50.734 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcMainController - Ticket sold successfully: matchId=1, customer=hatz, seats=2
+22:57:50.734 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Showing status message: 'Ticket sold successfully', success=true
+22:57:50.736 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcMainController - Loading matches data
+22:57:50.737 [Thread-4] DEBUG app.grpcclient.gui.GrpcMainController - Sending gRPC request for all matches
+22:57:50.742 [Thread-4] DEBUG app.grpcclient.gui.GrpcMainController - Received 3 matches
+22:57:50.743 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Match table updated with data
+22:57:53.619 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcMainController - Logout requested for user: admin
+22:57:53.619 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Shutting down gRPC channel
+22:57:53.622 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Loading GrpcLoginWindow.fxml
+22:57:53.626 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Setting stage in GrpcLoginController
+22:57:53.656 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcMainController - Returned to login screen
+22:58:55.915 [main] INFO  app.grpcclient.GrpcStartClient - gRPC Client application main method invoked
+22:58:55.949 [JavaFX Application Thread] INFO  app.grpcclient.GrpcStartClient - Starting gRPC Client application
+22:58:55.949 [JavaFX Application Thread] DEBUG app.grpcclient.GrpcStartClient - Loading GrpcLoginWindow.fxml
+22:58:56.317 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Setting stage in GrpcLoginController
+22:58:56.317 [JavaFX Application Thread] DEBUG app.grpcclient.GrpcStartClient - Stage set in GrpcLoginController
+22:58:56.648 [JavaFX Application Thread] INFO  app.grpcclient.GrpcStartClient - Application started and login window displayed
+22:59:01.047 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcLoginController - Login attempt for user: admin
+22:59:01.047 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Creating gRPC channel to localhost:50051
+22:59:01.392 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Creating TicketService stub
+22:59:01.400 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Sending gRPC login request for user: admin
+22:59:01.897 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcLoginController - Login successful: username=admin, userId=1
+22:59:01.897 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Loading GrpcMainWindow.fxml
+22:59:01.937 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting gRPC stub in GrpcMainController
+22:59:01.938 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting gRPC channel in GrpcMainController
+22:59:01.938 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting username: admin
+22:59:01.938 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting userId: 1
+22:59:01.938 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcMainController - Initializing GrpcMainController data
+22:59:01.938 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting up table columns
+22:59:01.939 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcMainController - Loading matches data
+22:59:01.940 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Setting up matches stream observer
+22:59:01.940 [Thread-3] DEBUG app.grpcclient.gui.GrpcMainController - Sending gRPC request for all matches
+22:59:01.948 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Match stream observer setup complete
+22:59:01.948 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - GrpcMainController initialized
+22:59:01.974 [Thread-3] DEBUG app.grpcclient.gui.GrpcMainController - Received 3 matches
+22:59:02.122 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcLoginController - Main window displayed for user: admin
+22:59:02.124 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Match table updated with data
+22:59:07.697 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcMainController - Logout requested for user: admin
+22:59:07.697 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Shutting down gRPC channel
+22:59:07.698 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcMainController - Loading GrpcLoginWindow.fxml
+22:59:07.702 [JavaFX Application Thread] DEBUG app.grpcclient.gui.GrpcLoginController - Setting stage in GrpcLoginController
+22:59:07.733 [JavaFX Application Thread] INFO  app.grpcclient.gui.GrpcMainController - Returned to login screen

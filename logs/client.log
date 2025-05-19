@@ -1,128 +1,66 @@
-22:00:04.416 [main] INFO  app.client.StartRpcClient - Client application main method invoked
-22:00:04.444 [JavaFX Application Thread] INFO  app.client.StartRpcClient - Starting RPC Client application
-22:00:04.459 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Connecting to server at localhost:55556
-22:00:04.462 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Creating RPC Proxy for server at localhost:55556
-22:00:04.462 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - BasketballServicesRpcProxy initialized
-22:00:04.474 [JavaFX Application Thread] DEBUG app.client.gui.SceneManager - Setting primary stage in SceneManager
-22:00:04.475 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Primary stage set in SceneManager
-22:00:04.475 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Loading LoginWindow.fxml
-22:00:04.830 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Setting service in LoginController
-22:00:04.830 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Service set in LoginController
-22:00:05.225 [JavaFX Application Thread] INFO  app.client.StartRpcClient - Application started and login window displayed
-22:00:10.050 [JavaFX Application Thread] INFO  app.client.gui.LoginController - Login attempt for user: admin
-22:00:10.050 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Creating new RPC proxy for login
-22:00:10.050 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Creating RPC Proxy for server at localhost:55556
-22:00:10.051 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Loading MainWindow.fxml
-22:00:10.111 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Performing login operation
-22:00:10.112 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Login attempt: username=admin
-22:00:10.139 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Connection established to server at localhost:55556
-22:00:10.139 [Thread-3] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy.ReaderThread - Response reader thread started
-22:00:10.754 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Login successful: username=admin, id=1
-22:00:10.754 [JavaFX Application Thread] INFO  app.client.gui.LoginController - Login successful for user: admin, id: 1
-22:00:10.755 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Setting service in MainController
-22:00:10.755 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Initializing match table
-22:00:10.771 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table initialized
-22:00:10.771 [JavaFX Application Thread] INFO  app.client.gui.MainController - Loading match data
-22:00:10.771 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Setting logged user: admin, id: 1
-22:00:10.771 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Setting stage close event
-22:00:10.773 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - MainController initialized with user and service
-22:00:10.773 [Thread-4] DEBUG app.client.gui.MainController - Fetching available matches from service
-22:00:10.773 [Thread-4] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Getting available matches
-22:00:10.812 [Thread-4] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Received 3 available matches
-22:00:10.813 [Thread-4] DEBUG app.client.gui.MainController - Received 3 matches
-22:00:10.926 [JavaFX Application Thread] INFO  app.client.gui.LoginController - Main window displayed for user: admin
-22:00:10.927 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table updated with data
-22:00:18.159 [JavaFX Application Thread] INFO  app.client.gui.MainController - Sell ticket operation requested
-22:00:18.161 [Thread-5] DEBUG app.client.gui.MainController - Selling ticket: matchId=3, userId=1, customer=hatz, seats=2
-22:00:18.161 [Thread-5] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Selling ticket: matchId=3, userId=1, customer=hatz, seats=2
-22:00:18.259 [Thread-5] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Ticket sold successfully
-22:00:18.260 [Thread-3] INFO  app.client.gui.MainController - Received ticketSoldUpdate notification on thread: Thread-3
-22:00:18.260 [Thread-5] INFO  app.client.gui.MainController - Ticket sold successfully: matchId=3, customer=hatz, seats=2
-22:00:18.260 [JavaFX Application Thread] INFO  app.client.gui.MainController - Loading match data
-22:00:18.260 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Showing status message: 'Ticket sold to hatz!', success=true
-22:00:18.261 [Thread-6] DEBUG app.client.gui.MainController - Fetching available matches from service
-22:00:18.261 [Thread-6] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Getting available matches
-22:00:18.263 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Updating matches on JavaFX thread: JavaFX Application Thread
-22:00:18.263 [JavaFX Application Thread] INFO  app.client.gui.MainController - Loading match data
-22:00:18.263 [Thread-7] DEBUG app.client.gui.MainController - Fetching available matches from service
-22:00:18.264 [Thread-7] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Getting available matches
-22:00:18.267 [Thread-6] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Received 3 available matches
-22:00:18.267 [Thread-6] DEBUG app.client.gui.MainController - Received 3 matches
-22:00:18.269 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table updated with data
-22:00:18.270 [Thread-7] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Received 3 available matches
-22:00:18.270 [Thread-7] DEBUG app.client.gui.MainController - Received 3 matches
-22:00:18.271 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table updated with data
-22:00:25.210 [main] INFO  app.client.StartRpcClient - Client application main method invoked
-22:00:25.232 [JavaFX Application Thread] INFO  app.client.StartRpcClient - Starting RPC Client application
-22:00:25.246 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Connecting to server at localhost:55556
-22:00:25.248 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Creating RPC Proxy for server at localhost:55556
-22:00:25.248 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - BasketballServicesRpcProxy initialized
-22:00:25.249 [JavaFX Application Thread] DEBUG app.client.gui.SceneManager - Setting primary stage in SceneManager
-22:00:25.249 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Primary stage set in SceneManager
-22:00:25.249 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Loading LoginWindow.fxml
-22:00:25.563 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Setting service in LoginController
-22:00:25.563 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Service set in LoginController
-22:00:25.946 [JavaFX Application Thread] INFO  app.client.StartRpcClient - Application started and login window displayed
-22:00:32.705 [JavaFX Application Thread] INFO  app.client.gui.LoginController - Login attempt for user: admin1
-22:00:32.706 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Creating new RPC proxy for login
-22:00:32.706 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Creating RPC Proxy for server at localhost:55556
-22:00:32.706 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Loading MainWindow.fxml
-22:00:32.749 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Performing login operation
-22:00:32.749 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Login attempt: username=admin1
-22:00:32.755 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Connection established to server at localhost:55556
-22:00:32.755 [Thread-3] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy.ReaderThread - Response reader thread started
-22:00:32.793 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Login successful: username=admin1, id=2
-22:00:32.793 [JavaFX Application Thread] INFO  app.client.gui.LoginController - Login successful for user: admin1, id: 2
-22:00:32.793 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Setting service in MainController
-22:00:32.793 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Initializing match table
-22:00:32.794 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table initialized
-22:00:32.794 [JavaFX Application Thread] INFO  app.client.gui.MainController - Loading match data
-22:00:32.794 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Setting logged user: admin1, id: 2
-22:00:32.794 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Setting stage close event
-22:00:32.795 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - MainController initialized with user and service
-22:00:32.795 [Thread-4] DEBUG app.client.gui.MainController - Fetching available matches from service
-22:00:32.795 [Thread-4] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Getting available matches
-22:00:32.808 [Thread-4] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Received 3 available matches
-22:00:32.809 [Thread-4] DEBUG app.client.gui.MainController - Received 3 matches
-22:00:32.946 [JavaFX Application Thread] INFO  app.client.gui.LoginController - Main window displayed for user: admin1
-22:00:32.948 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table updated with data
-22:00:39.092 [JavaFX Application Thread] INFO  app.client.gui.MainController - Sell ticket operation requested
-22:00:39.093 [Thread-5] DEBUG app.client.gui.MainController - Selling ticket: matchId=1, userId=2, customer=h, seats=1
-22:00:39.093 [Thread-5] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Selling ticket: matchId=1, userId=2, customer=h, seats=1
-22:00:39.117 [Thread-5] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Ticket sold successfully
-22:00:39.117 [Thread-3] INFO  app.client.gui.MainController - Received ticketSoldUpdate notification on thread: Thread-3
-22:00:39.117 [Thread-5] INFO  app.client.gui.MainController - Ticket sold successfully: matchId=1, customer=h, seats=1
-22:00:39.117 [Thread-3] INFO  app.client.gui.MainController - Received ticketSoldUpdate notification on thread: Thread-3
-22:00:39.118 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Updating matches on JavaFX thread: JavaFX Application Thread
-22:00:39.118 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Updating matches on JavaFX thread: JavaFX Application Thread
-22:00:39.118 [JavaFX Application Thread] INFO  app.client.gui.MainController - Loading match data
-22:00:39.118 [JavaFX Application Thread] INFO  app.client.gui.MainController - Loading match data
-22:00:39.118 [JavaFX Application Thread] INFO  app.client.gui.MainController - Loading match data
-22:00:39.118 [Thread-6] DEBUG app.client.gui.MainController - Fetching available matches from service
-22:00:39.119 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Showing status message: 'Ticket sold to h!', success=true
-22:00:39.118 [Thread-8] DEBUG app.client.gui.MainController - Fetching available matches from service
-22:00:39.119 [Thread-7] DEBUG app.client.gui.MainController - Fetching available matches from service
-22:00:39.119 [Thread-6] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Getting available matches
-22:00:39.119 [Thread-7] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Getting available matches
-22:00:39.119 [Thread-8] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Getting available matches
-22:00:39.123 [Thread-6] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Received 3 available matches
-22:00:39.123 [Thread-6] DEBUG app.client.gui.MainController - Received 3 matches
-22:00:39.124 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table updated with data
-22:00:39.126 [Thread-8] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Received 3 available matches
-22:00:39.127 [Thread-8] DEBUG app.client.gui.MainController - Received 3 matches
-22:00:39.127 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table updated with data
-22:00:39.129 [Thread-7] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Received 3 available matches
-22:00:39.130 [Thread-7] DEBUG app.client.gui.MainController - Received 3 matches
-22:00:39.131 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table updated with data
-22:00:43.692 [JavaFX Application Thread] INFO  app.client.gui.MainController - Logout requested for user: admin
-22:00:43.692 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Performing logout for user: admin
-22:00:43.692 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Logout: username=admin, id=1
-22:00:43.695 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Logout successful and connection closed
-22:00:43.695 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Loading login window
-22:00:43.699 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Creating new RPC proxy for login window
-22:00:43.700 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Creating RPC Proxy for server at localhost:55556
-22:00:43.700 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Setting service in LoginController
-22:00:43.696 [Thread-3] ERROR app.network.rpcprotocol.BasketballServicesRpcProxy.ReaderThread - IO error in reader thread
+08:42:30.838 [main] INFO  app.client.StartRpcClient - Client application main method invoked
+08:42:30.872 [JavaFX Application Thread] INFO  app.client.StartRpcClient - Starting RPC Client application
+08:42:30.884 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Connecting to server at localhost:55556
+08:42:30.886 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Creating RPC Proxy for server at localhost:55556
+08:42:30.887 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - BasketballServicesRpcProxy initialized
+08:42:30.888 [JavaFX Application Thread] DEBUG app.client.gui.SceneManager - Setting primary stage in SceneManager
+08:42:30.888 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Primary stage set in SceneManager
+08:42:30.888 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Loading LoginWindow.fxml
+08:42:31.210 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Setting service in LoginController
+08:42:31.210 [JavaFX Application Thread] DEBUG app.client.StartRpcClient - Service set in LoginController
+08:42:31.538 [JavaFX Application Thread] INFO  app.client.StartRpcClient - Application started and login window displayed
+08:42:41.087 [JavaFX Application Thread] INFO  app.client.gui.LoginController - Login attempt for user: admin
+08:42:41.088 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Creating new RPC proxy for login
+08:42:41.088 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Creating RPC Proxy for server at localhost:55556
+08:42:41.088 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Loading MainWindow.fxml
+08:42:41.181 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Performing login operation
+08:42:41.181 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Login attempt: username=admin
+08:42:41.188 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Connection established to server at localhost:55556
+08:42:41.188 [Thread-3] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy.ReaderThread - Response reader thread started
+08:42:41.777 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Login successful: username=admin, id=1
+08:42:41.777 [JavaFX Application Thread] INFO  app.client.gui.LoginController - Login successful for user: admin, id: 1
+08:42:41.777 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Setting service in MainController
+08:42:41.777 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Initializing match table
+08:42:41.779 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table initialized
+08:42:41.780 [JavaFX Application Thread] INFO  app.client.gui.MainController - Loading match data
+08:42:41.780 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Setting logged user: admin, id: 1
+08:42:41.781 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Setting stage close event
+08:42:41.781 [Thread-4] DEBUG app.client.gui.MainController - Fetching available matches from service
+08:42:41.781 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - MainController initialized with user and service
+08:42:41.781 [Thread-4] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Getting available matches
+08:42:41.824 [Thread-4] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Received 3 available matches
+08:42:41.825 [Thread-4] DEBUG app.client.gui.MainController - Received 3 matches
+08:42:41.947 [JavaFX Application Thread] INFO  app.client.gui.LoginController - Main window displayed for user: admin
+08:42:41.949 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table updated with data
+08:42:56.042 [JavaFX Application Thread] INFO  app.client.gui.MainController - Sell ticket operation requested
+08:42:56.044 [Thread-5] DEBUG app.client.gui.MainController - Selling ticket: matchId=2, userId=1, customer=Lucian, seats=2
+08:42:56.045 [Thread-5] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Selling ticket: matchId=2, userId=1, customer=Lucian, seats=2
+08:42:56.138 [Thread-5] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Ticket sold successfully
+08:42:56.139 [Thread-5] INFO  app.client.gui.MainController - Ticket sold successfully: matchId=2, customer=Lucian, seats=2
+08:42:56.139 [Thread-3] INFO  app.client.gui.MainController - Received ticketSoldUpdate notification on thread: Thread-3
+08:42:56.140 [JavaFX Application Thread] INFO  app.client.gui.MainController - Loading match data
+08:42:56.140 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Showing status message: 'Ticket sold to Lucian!', success=true
+08:42:56.140 [Thread-6] DEBUG app.client.gui.MainController - Fetching available matches from service
+08:42:56.141 [Thread-6] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Getting available matches
+08:42:56.142 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Updating matches on JavaFX thread: JavaFX Application Thread
+08:42:56.142 [JavaFX Application Thread] INFO  app.client.gui.MainController - Loading match data
+08:42:56.143 [Thread-7] DEBUG app.client.gui.MainController - Fetching available matches from service
+08:42:56.143 [Thread-7] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Getting available matches
+08:42:56.147 [Thread-6] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Received 3 available matches
+08:42:56.147 [Thread-6] DEBUG app.client.gui.MainController - Received 3 matches
+08:42:56.148 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table updated with data
+08:42:56.150 [Thread-7] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Received 3 available matches
+08:42:56.150 [Thread-7] DEBUG app.client.gui.MainController - Received 3 matches
+08:42:56.150 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Match table updated with data
+08:42:59.229 [JavaFX Application Thread] INFO  app.client.gui.MainController - Logout requested for user: admin
+08:42:59.230 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Performing logout for user: admin
+08:42:59.231 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Logout: username=admin, id=1
+08:42:59.242 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Logout successful and connection closed
+08:42:59.243 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Loading login window
+08:42:59.261 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Creating new RPC proxy for login window
+08:42:59.261 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Creating RPC Proxy for server at localhost:55556
+08:42:59.262 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Setting service in LoginController
+08:42:59.243 [Thread-3] ERROR app.network.rpcprotocol.BasketballServicesRpcProxy.ReaderThread - IO error in reader thread
 java.net.SocketException: Socket closed
 	at java.base/sun.nio.ch.NioSocketImpl.endRead(NioSocketImpl.java:243) ~[?:?]
 	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323) ~[?:?]
@@ -139,32 +77,5 @@ java.net.SocketException: Socket closed
 	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:486) ~[?:?]
 	at app.network.rpcprotocol.BasketballServicesRpcProxy$ReaderThread.run(BasketballServicesRpcProxy.java:228) ~[classes/:?]
 	at java.base/java.lang.Thread.run(Thread.java:1575) [?:?]
-22:00:43.718 [Thread-3] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy.ReaderThread - Response reader thread ended
-22:00:43.733 [JavaFX Application Thread] INFO  app.client.gui.MainController - Returned to login screen
-22:00:46.662 [JavaFX Application Thread] INFO  app.client.gui.MainController - Logout requested for user: admin1
-22:00:46.662 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Performing logout for user: admin1
-22:00:46.662 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Logout: username=admin1, id=2
-22:00:46.667 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Logout successful and connection closed
-22:00:46.668 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Loading login window
-22:00:46.672 [JavaFX Application Thread] DEBUG app.client.gui.MainController - Creating new RPC proxy for login window
-22:00:46.673 [JavaFX Application Thread] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy - Creating RPC Proxy for server at localhost:55556
-22:00:46.673 [JavaFX Application Thread] DEBUG app.client.gui.LoginController - Setting service in LoginController
-22:00:46.668 [Thread-3] ERROR app.network.rpcprotocol.BasketballServicesRpcProxy.ReaderThread - IO error in reader thread
-java.net.SocketException: Socket closed
-	at java.base/sun.nio.ch.NioSocketImpl.endRead(NioSocketImpl.java:243) ~[?:?]
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323) ~[?:?]
-	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346) ~[?:?]
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796) ~[?:?]
-	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1116) ~[?:?]
-	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1103) ~[?:?]
-	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1097) ~[?:?]
-	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2900) ~[?:?]
-	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3229) ~[?:?]
-	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3239) ~[?:?]
-	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1701) ~[?:?]
-	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:528) ~[?:?]
-	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:486) ~[?:?]
-	at app.network.rpcprotocol.BasketballServicesRpcProxy$ReaderThread.run(BasketballServicesRpcProxy.java:228) ~[classes/:?]
-	at java.base/java.lang.Thread.run(Thread.java:1575) [?:?]
-22:00:46.691 [Thread-3] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy.ReaderThread - Response reader thread ended
-22:00:46.699 [JavaFX Application Thread] INFO  app.client.gui.MainController - Returned to login screen
+08:42:59.289 [Thread-3] INFO  app.network.rpcprotocol.BasketballServicesRpcProxy.ReaderThread - Response reader thread ended
+08:42:59.297 [JavaFX Application Thread] INFO  app.client.gui.MainController - Returned to login screen
