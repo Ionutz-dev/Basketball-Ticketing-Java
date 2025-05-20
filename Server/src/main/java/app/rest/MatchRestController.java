@@ -24,7 +24,7 @@ public class MatchRestController {
     }
 
     @GetMapping("/test")
-    public String test(@RequestParam(value = "name", defaultValue = "Hello") String name) {
+    public String test(@RequestParam(value = "name", defaultValue = "Test") String name) {
         return name.toUpperCase();
     }
 

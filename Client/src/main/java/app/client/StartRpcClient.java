@@ -26,11 +26,9 @@ public class StartRpcClient extends Application {
             IBasketballServices service = new BasketballServicesRpcProxy(host, port);
             logger.debug("BasketballServicesRpcProxy initialized");
 
-            // Set primary stage globally
             SceneManager.setPrimaryStage(primaryStage);
             logger.debug("Primary stage set in SceneManager");
 
-            // Show LoginWindow scene
             logger.debug("Loading LoginWindow.fxml");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginWindow.fxml"));
             Scene scene = new Scene(loader.load());

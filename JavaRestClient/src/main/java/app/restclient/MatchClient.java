@@ -164,9 +164,8 @@ public class MatchClient {
     private static void updateMatch(Scanner scanner) throws IOException {
         System.out.print("\nEnter match ID to update: ");
         int id = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
 
-        // First get current match
         HttpGet getRequest = new HttpGet(URL + "/" + id);
         getRequest.addHeader("Accept", "application/json");
 
@@ -263,7 +262,6 @@ public class MatchClient {
         private double ticketPrice;
         private int availableSeats;
 
-        // Getters and setters
         public int getId() { return id; }
         public void setId(int id) { this.id = id; }
 

@@ -131,12 +131,6 @@ public class MatchRestRepository implements IMatchRepository {
         return match;
     }
 
-    /**
-     * Create a new match in the database
-     *
-     * @param match The match to create (ID will be generated)
-     * @return The created match with assigned ID
-     */
     public Match save(Match match) {
         logger.debug("Creating new match: {}", match);
         String sql = "INSERT INTO Matches (teamA, teamB, ticketPrice, availableSeats) VALUES (?, ?, ?, ?)";
@@ -174,13 +168,6 @@ public class MatchRestRepository implements IMatchRepository {
         }
     }
 
-    /**
-     * Update an existing match
-     *
-     * @param matchId The ID of the match to update
-     * @param match The updated match data
-     * @return The updated match or null if not found
-     */
     public Match update(int matchId, Match match) {
         logger.debug("Updating match with id={}: {}", matchId, match);
         String sql = "UPDATE Matches SET teamA = ?, teamB = ?, ticketPrice = ?, availableSeats = ? WHERE id = ?";
@@ -211,12 +198,6 @@ public class MatchRestRepository implements IMatchRepository {
         }
     }
 
-    /**
-     * Delete a match by ID
-     *
-     * @param matchId The ID of the match to delete
-     * @return true if the match was deleted, false otherwise
-     */
     public boolean delete(int matchId) {
         logger.debug("Deleting match with id={}", matchId);
         String sql = "DELETE FROM Matches WHERE id = ?";
