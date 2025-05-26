@@ -5,177 +5,146 @@ This project is a **multi-client application** for managing basketball ticket sa
 ## 📋 Project Overview
 
 This system provides:
-- **Multiple Client Options**: JavaFX UI, gRPC, and REST API clients
-- **Real-Time Updates**: Live ticket availability across all connected clients
-- **Multiple Communication Protocols**:
-  - Sockets with custom RPC protocol
-  - gRPC with streaming capabilities
-  - REST API services
-- **Comprehensive Persistence Layer**:
-  - JDBC direct SQL operations
-  - Hibernate ORM mappings
-- **Extensive Logging**: Module-specific logging with Log4j2
+
+* **Multiple Client Options**: JavaFX UI client, gRPC client, REST API client, and a React web client
+* **Real-Time Updates**: Live ticket availability across all connected clients
+* **Multiple Communication Protocols**:
+
+  * Sockets with custom RPC protocol
+  * gRPC with streaming capabilities
+  * REST API services (Spring Boot)
+* **Concurrent User Support**: Multiple simultaneous users interacting with the system
+* **Persistent Storage**:
+
+  * SQLite via JDBC
+  * Hibernate ORM
+* **Extensive Logging**: Module-specific logging using Log4j2
 
 ## 📁 Project Structure
 
 ```
-JavaApp/
+JavaApp/                          ← Parent multi-module project
 │
-├── Client/                          # JavaFX Client (RPC-based)
+├── Client/                       # JavaFX RPC-based Client
 │   ├── src/main/java/app/client/gui/
-│   │   ├── LoginController.java     # Handle user authentication
-│   │   ├── MainController.java      # Manage ticket sales operations
-│   │   ├── SceneManager.java        # Control UI navigation
-│   │   └── Util.java                # UI utility functions
-│   └── src/main/resources/          # JavaFX UI layouts
+│   │   ├── LoginController.java
+│   │   ├── MainController.java
+│   │   ├── SceneManager.java
+│   │   └── Util.java
+│   └── src/main/resources/       # FXML layouts
 │
-├── GrpcClient/                      # gRPC-based Client
+├── GrpcClient/                   # gRPC-based Client
 │   ├── src/main/java/app/grpcclient/
-│   ├── src/main/proto/              # Protocol Buffers definitions
+│   ├── src/main/proto/           # .proto definitions
 │   └── src/main/resources/
 │
-├── JavaRestClient/                  # Java REST API Client
+├── JavaRestClient/               # Java CLI REST Client
 │   └── src/main/java/app/restclient/
-│       └── MatchClient.java         # HTTP client for REST API operations
+│       └── MatchClient.java
 │
-├── Server/                          # Server module
+├── ReactClient/                  # React web client (Vite)
+│   ├── package.json
+│   ├── vite.config.js            # configured to use port 3000
+│   └── src/
+│       ├── MatchApp.jsx          # Main React component
+│       ├── MatchForm.jsx         # Create/update form
+│       ├── MatchTable.jsx        # Data table
+│       ├── index.css             # Global styles
+│       └── utils/                # REST helper functions
+│           ├── consts.js         # API base URL
+│           └── rest-calls.js     # fetch wrappers
+│
+├── Server/                       # Spring Boot REST & RPC servers
 │   ├── src/main/java/app/server/
 │   │   ├── BasketballServicesImpl.java
 │   │   ├── StartRpcServer.java
 │   │   └── StartHibernateRpcServer.java
-│   ├── src/main/java/app/rest/      # REST API controllers
-│   │   ├── MatchRestController.java # Match REST endpoints
-│   │   └── StartRestServices.java   # Spring Boot app initialization
+│   ├── src/main/java/app/rest/   # REST controllers & config
+│   │   ├── MatchRestController.java
+│   │   └── StartRestServices.java
 │   └── src/main/resources/
 │
-├── Model/                           # Shared domain models
+├── Model/                        # Shared domain models
 │   └── src/main/java/app/model/
 │
-├── Persistence/                     # Database repositories
+├── Persistence/                  # Repository implementations
 │   ├── src/main/java/app/repository/
-│   │   ├── IMatchRepository.java    # Match repository interface
+│   │   ├── IMatchRepository.java
 │   │   ├── ITicketRepository.java
 │   │   ├── IUserRepository.java
-│   │   ├── jdbc/                    # JDBC implementations
-│   │   ├── hibernate/               # Hibernate ORM implementations
-│   │   └── rest/                    # REST repository implementations
+│   │   ├── jdbc/                 # JDBC implementations
+│   │   ├── hibernate/            # Hibernate implementations
+│   │   └── rest/                 # REST repository wrapper
 │
-├── Services/                        # Service interfaces
+├── Services/                     # Business service interfaces
 │   └── src/main/java/app/services/
 │
-└── Networking/                      # Network protocols implementation
+└── Networking/                   # Custom socket RPC protocol
     └── src/main/java/app/network/
 ```
 
-## ✨ Features
+## ✨ Key Features
 
 * 🔒 **User Authentication**: Login/logout with server-side validation
-* 📋 **Real-Time Match Updates**: Live ticket availability across clients
-* 🎟️ **Ticket Selling**: Sales operations with seat management
-* 🔄 **Concurrent User Support**: Multiple simultaneous users
-* 📊 **Comprehensive Logging**: Module-specific logging with Log4j2
+* 📋 **Live Match & Ticket Updates**: Seats availability updates push to all clients
+* 🎟️ **Ticket Selling**: Sell tickets, update available seats
+* 🔄 **Concurrent Access**: Handle multiple users concurrently
+* 🌐 **Multi-Protocol Support**: RPC, gRPC, and REST endpoints
+* 📊 **Logging**: Detailed logs via Log4j2
 
-## 🚀 Communication Protocols
+## 🚀 Running the System
 
-This project implements three different communication protocols:
+### 1. Build & Start the Server
 
-### 1. Custom RPC Protocol (Sockets)
-* Implementation in `Networking/src/main/java/app/network/rpcprotocol/`
-* Custom request/response cycle with Java serialization
-* Observer pattern for real-time updates
-
-### 2. gRPC
-* Protocol definitions in `GrpcClient/src/main/proto/ticket.proto`
-* Client implementation in `GrpcClient/src/main/java/app/grpcclient/`
-* Server-streaming capabilities for real-time updates
-
-### 3. REST API
-* Controller in `Server/src/main/java/app/rest/MatchRestController.java`
-* Standard HTTP operations (GET, POST, PUT, DELETE)
-* Spring Boot-based implementation
-
-## 📊 REST Services Operations
-
-The REST API provides the following operations for Match entities:
-
-| HTTP Method | Endpoint | Description |
-|-------------|----------|-------------|
-| GET | `/basketball/api/matches` | Get all matches |
-| GET | `/basketball/api/matches/{id}` | Get match by ID |
-| POST | `/basketball/api/matches` | Create a new match |
-| PUT | `/basketball/api/matches/{id}` | Update a match |
-| DELETE | `/basketball/api/matches/{id}` | Delete a match |
-
-## 🛢️ Persistence Layer
-
-The application supports two different persistence mechanisms:
-
-1. **JDBC Repository**: Direct SQL operations through JDBC
-  - Faster for simple operations
-  - Lighter memory footprint
-  - More control over SQL statements
-
-2. **Hibernate ORM**: Object-Relational Mapping
-  - Automatic SQL generation
-  - Entity relationship management
-  - Session-based transaction handling
-  - Schema creation/validation
-
-Both implementations use the same repository interfaces, allowing seamless switching between the two.
-
-## 🚀 How to Run
-
-### 1. Start the Server
-
-For JDBC-based persistence:
 ```bash
-cd Server
-./gradlew run
+cd JavaApp/Server
+mvn clean install
+mvn spring-boot:run        # starts REST API on port 8080
+# OR run RPC servers:
+# mvn exec:java -Dexec.mainClass="app.server.StartRpcServer"
+# mvn exec:java -Dexec.mainClass="app.server.StartHibernateRpcServer"
 ```
 
-For Hibernate ORM-based persistence:
-```bash
-cd Server
-./gradlew run --args="hibernate"
-```
+### 2. Launch Clients
 
-For REST services:
-```bash
-cd Server
-./gradlew bootRun
-```
+* **JavaFX RPC Client**:
 
-### 2. Run the Socket-based Client
-```bash
-cd Client
-./gradlew run
-```
+  ```bash
+  cd JavaApp/Client
+  mvn clean javafx:run
+  ```
+* **gRPC Client**:
 
-### 3. Run the gRPC Client
-```bash
-cd GrpcClient
-./gradlew run
-```
+  ```bash
+  cd JavaApp/GrpcClient
+  mvn clean exec:java -Dexec.mainClass="app.grpcclient.YourGrpcMain"
+  ```
+* **Java REST Client**:
 
-### 4. Run the Java REST Client
-```bash
-cd JavaRestClient
-./gradlew run
-```
+  ```bash
+  cd JavaApp/JavaRestClient
+  mvn clean exec:java -Dexec.mainClass="app.restclient.MatchClient"
+  ```
+* **React Web Client**:
 
-## 🧪 Testing the REST API
+  ```bash
+  cd JavaApp/ReactClient
+  npm install
+  npm run dev        # launches at http://localhost:3000
+  ```
 
-You can test the REST API using:
+## 📑 REST API Endpoints
 
-1. **JavaRestClient**: A command-line client for testing all REST operations
-2. **Postman or similar REST client**: Import the following endpoints:
-  - GET http://localhost:8080/basketball/api/matches
-  - GET http://localhost:8080/basketball/api/matches/{id}
-  - POST http://localhost:8080/basketball/api/matches
-  - PUT http://localhost:8080/basketball/api/matches/{id}
-  - DELETE http://localhost:8080/basketball/api/matches/{id}
+| Method | Endpoint                       | Description              |
+| ------ | ------------------------------ | ------------------------ |
+| GET    | `/basketball/api/matches`      | List all matches         |
+| GET    | `/basketball/api/matches/{id}` | Get match by ID          |
+| POST   | `/basketball/api/matches`      | Create a new match       |
+| PUT    | `/basketball/api/matches/{id}` | Update an existing match |
+| DELETE | `/basketball/api/matches/{id}` | Delete a match           |
 
-Example JSON for creating/updating a match:
+**JSON Body** (create/update):
+
 ```json
 {
   "teamA": "Team A",
@@ -185,26 +154,35 @@ Example JSON for creating/updating a match:
 }
 ```
 
-## 📦 Requirements Implemented
+## 🛢️ Persistence Options
 
-* ✅ RESTful API with all required operations (create, update, delete, lookup by id, show all)
-* ✅ Spring Boot-based REST services
-* ✅ Multiple client implementations (Java, C#)
-* ✅ Proper error handling and status codes
-* ✅ ID generation on server side for new resources
-* ✅ Dual persistence implementations (JDBC and Hibernate)
-* ✅ Comprehensive logging system
-* ✅ Modular architecture with clear separation of concerns
+* **SQLite via JDBC**: Direct SQL with `Matches` table
+* **Hibernate ORM**: Entities auto-mapped, schema management
 
-## ⚙️ Technologies Used
+Switch implementations by configuring beans in `Server/StartRestServices.java` (or using profiles).
 
-* Java 21
-* JavaFX 21
-* Spring Boot 3.2.3
-* Gradle (multi-module)
-* SQLite
-* Hibernate ORM 6.4.4
+## 🛠️ UI Enhancements (React Client)
+
+* **Modern card layout** with light theme & shadows
+* **Responsive form grid** for inputs
+* **Styled buttons** for primary (blue), secondary (gray), info (teal), and danger (red)
+* **Striped, hoverable table** with colored header
+
+## 📦 Technologies
+
+* Java 21, JavaFX 21
+* Spring Boot 3
+* SQLite (JDBC), Hibernate 6
 * gRPC + Protobuf
-* Apache HttpComponents
+* React 18 + Vite
 * Log4j2
-* Java Concurrency APIs
+* Maven & npm
+
+## ✅ Checklist for the Assignment
+
+* [x] RESTful API with full CRUD
+* [x] Spring Boot REST services with CORS
+* [x] React web client with Vite
+* [x] UI styling and layout improvements
+* [x] JDBC & Hibernate persistence
+* [x] Multiple client implementations secured and logged
