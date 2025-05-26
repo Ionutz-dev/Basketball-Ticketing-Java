@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+input {
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  font-size: 1rem;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+button[type="submit"] {
+  background: #007bff;
+  color: #fff;
+}
+button[type="submit"]:hover {
+  background: #0056b3;
+}
+button.cancel {
+  background: #6c757d;
+  color: #fff;
+}
+button.cancel:hover {
+  background: #5a6268;
+}
+.actions button {
+  margin-right: 0.5rem;
+  background: #17a2b8;
+  color: #fff;
+}
+.actions button:hover {
+  background: #138496;
+}
+.actions button.delete {
+  background: #dc3545;
+}
+.actions button.delete:hover {
+  background: #c82333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+thead {
+  background: #007bff;
+  color: #fff;
+}
+th, td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e9ecef;
+  text-align: left;
+}
+tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
+tbody tr:hover {
+  background: #e2e6ea;
+}

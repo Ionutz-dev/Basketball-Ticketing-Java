@@ -135,7 +135,7 @@ public class MatchRestRepository implements IMatchRepository {
         logger.debug("Creating new match: {}", match);
         String sql = "INSERT INTO Matches (teamA, teamB, ticketPrice, availableSeats) VALUES (?, ?, ?, ?)";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, match.getTeamA());
             stmt.setString(2, match.getTeamB());
             stmt.setDouble(3, match.getTicketPrice());
@@ -145,20 +145,20 @@ public class MatchRestRepository implements IMatchRepository {
                     sql, match.getTeamA(), match.getTeamB(), match.getTicketPrice(), match.getAvailableSeats());
 
             int affectedRows = stmt.executeUpdate();
-
             if (affectedRows == 0) {
                 logger.error("Creating match failed, no rows affected");
                 return null;
             }
 
-            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    int id = generatedKeys.getInt(1);
+            try (Statement keyStmt = connection.createStatement();
+                 ResultSet rs = keyStmt.executeQuery("SELECT last_insert_rowid()")) {
+                if (rs.next()) {
+                    int id = rs.getInt(1);
                     match.setId(id);
                     logger.info("Match created with ID: {}", id);
                     return match;
                 } else {
-                    logger.error("Creating match failed, no ID obtained");
+                    logger.error("Could not retrieve generated ID");
                     return null;
                 }
             }
