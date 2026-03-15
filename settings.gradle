@@ -1,4 +1,4 @@
-rootProject.name = 'JavaApp'
+rootProject.name = 'Basketball-Ticketing-Java'
 
 include 'Model'
 include 'Persistence'
